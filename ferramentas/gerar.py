@@ -71,7 +71,7 @@ ANO = ATUALIZADO.split()[-1]
 # Simulados já lançados e perfis do autor, lidos de site/assets/dados.js
 _DADOS = open(os.path.join(SITE, "assets", "dados.js"), encoding="utf-8").read()
 COM_SIMULADO = {m.group(1).upper() for m in re.finditer(r'id: "([a-z]{2}-\d{3})", trilha: "microsoft".*?status: "([a-z-]+)"', _DADOS, re.S) if m.group(2) == "disponivel"}
-PERFIS = [u for u in re.findall(r'^\s*(?:instagram|linkedin|udemy|youtube): "(https?://[^"]+)"', _DADOS, re.M)]
+PERFIS = [u for u in re.findall(r'^\s*(?:instagram|linkedin|youtube|udemyPerfil): "(https?://[^"]+)"', _DADOS, re.M)]
 PESSOA = {"@type": "Person", "@id": f"{DOMINIO}/#raphael", "name": "Raphael Barreto", "url": f"{DOMINIO}/",
           "image": f"{DOMINIO}/assets/raphael.webp", "jobTitle": "Microsoft Certified Educator"}
 if PERFIS: PESSOA["sameAs"] = PERFIS

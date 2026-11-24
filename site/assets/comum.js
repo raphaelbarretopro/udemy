@@ -164,10 +164,11 @@
   const ICONS = {
     instagram: '<path d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3Zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3Zm6-7.9a1.1 1.1 0 1 1-1.1-1.1A1.1 1.1 0 0 1 18 7.1ZM21.9 8.2a5.4 5.4 0 0 0-1.5-3.9 5.5 5.5 0 0 0-3.9-1.5c-1.5-.1-6-.1-7.6 0a5.5 5.5 0 0 0-3.9 1.5 5.5 5.5 0 0 0-1.5 3.9c-.1 1.5-.1 6 0 7.6a5.4 5.4 0 0 0 1.5 3.9 5.5 5.5 0 0 0 3.9 1.5c1.5.1 6 .1 7.6 0a5.4 5.4 0 0 0 3.9-1.5 5.5 5.5 0 0 0 1.5-3.9c.1-1.6.1-6.1 0-7.6Zm-2 9.3a3 3 0 0 1-1.7 1.7c-1.2.5-4 .4-5.2.4s-4.1.1-5.2-.4a3 3 0 0 1-1.7-1.7c-.5-1.2-.4-4-.4-5.2s-.1-4.1.4-5.2a3 3 0 0 1 1.7-1.7c1.2-.5 4-.4 5.2-.4s4.1-.1 5.2.4a3 3 0 0 1 1.7 1.7c.5 1.2.4 4 .4 5.2s.1 4.1-.4 5.2Z"/>',
     linkedin: '<path d="M6.9 21H2.6V8.9h4.3ZM4.8 7.1a2.5 2.5 0 1 1 2.5-2.5 2.5 2.5 0 0 1-2.5 2.5ZM21.4 21h-4.3v-5.9c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1v6H8.6V8.9h4.1v1.7h.1a4.5 4.5 0 0 1 4-2.2c4.3 0 5.1 2.8 5.1 6.5Z"/>',
+    youtube: '<path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.7 15.1V8.9l5.8 3.1Z"/>',
     udemy: '<path d="M12 2 3.5 6.9V10L12 5.1l8.5 4.9V6.9ZM5.3 11.5v4.3c0 3.5 3 6.2 6.7 6.2s6.7-2.7 6.7-6.2v-4.3h-3v4.2a3.7 3.7 0 0 1-7.4 0v-4.2Z"/>'
   };
   const social = $("#social");
-  if (social) social.innerHTML = [["instagram", S.instagram, "Instagram"], ["linkedin", S.linkedin, "LinkedIn"], ["udemy", S.udemyPerfil, "Udemy"]]
+  if (social) social.innerHTML = [["instagram", S.instagram, "Instagram"], ["linkedin", S.linkedin, "LinkedIn"], ["youtube", S.youtube, "YouTube"], ["udemy", S.udemyPerfil, "Udemy"]]
     .filter(([, u]) => u).map(([k, u, l]) => `<a href="${esc(u)}" target="_blank" rel="noopener" aria-label="${l}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[k]}</svg></a>`).join("");
 
   /* ---------- Efeitos ---------- */

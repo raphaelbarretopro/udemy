@@ -16,8 +16,9 @@ window.SITE = {
   udemyPerfil: "https://www.udemy.com/user/raphael-barreto-de-oliveira-2/",
 
   /* Deixe "" para esconder o ícone */
-  instagram: "",   // ex.: "https://instagram.com/seuperfil"
-  linkedin: "",    // ex.: "https://linkedin.com/in/seuperfil"
+  instagram: "https://www.instagram.com/raphaelbarretopro/",
+  linkedin: "https://www.linkedin.com/in/raphaelbarretopro/",
+  youtube: "https://www.youtube.com/@Raphaelbarretopro",
   foto: "/assets/raphael.webp",  // quadrada. Vazio = monograma RB
 
   /* false = esconde tudo da AWS (seção, quiz, faixa, depoimentos). true = mostra de novo. */
