@@ -214,15 +214,45 @@
     const upd = () => dock.classList.toggle("show", heroOut && !formIn);
     new IntersectionObserver(([en]) => { heroOut = !en.isIntersecting; upd(); }).observe(topo);
     const al = $("#alerta"); if (al) new IntersectionObserver(([en]) => { formIn = en.isIntersecting; upd(); }, { threshold: .1 }).observe(al);
-    /* iPhone (Safari): quando a barra do navegador encolhe, a área "fixa" pode passar da tela.
-       Mede a parte visível e sobe a barra o quanto for preciso. */
+    /* iPhone (Safari/Chrome): quando a barra do navegador encolhe, a área "fixa" pode passar da
+       borda da tela. Posiciona a barra pelo TOPO, a partir da altura realmente visível. */
     const vv = window.visualViewport;
     if (vv) {
+      const sonda = document.createElement("div");
+      sonda.style.cssText = "position:fixed;left:0;bottom:0;width:0;height:env(safe-area-inset-bottom,0px);visibility:hidden;pointer-events:none";
+      document.body.appendChild(sonda);
+      let pedido = 0;
       const ajusta = () => {
-        const sobra = Math.max(0, Math.round(window.innerHeight - (vv.height + vv.offsetTop)));
-        dock.style.setProperty("--dock-extra", sobra + "px");
+        pedido = 0;
+        const seguro = sonda.offsetHeight || 0;
+        const fundoVisivel = vv.offsetTop + vv.height;              // borda de baixo do que a pessoa vê
+        const topo = Math.round(fundoVisivel - dock.offsetHeight - 14 - seguro);
+        dock.style.setProperty("--dock-top", topo + "px");
+        dock.classList.add("dock-vv");
+        if (diag) diag(seguro, topo);
       };
-      vv.addEventListener("resize", ajusta); vv.addEventListener("scroll", ajusta); addEventListener("scroll", ajusta, { passive: true });
+      const agenda = () => { if (!pedido) pedido = requestAnimationFrame(ajusta); };
+      vv.addEventListener("resize", agenda); vv.addEventListener("scroll", agenda);
+      addEventListener("scroll", agenda, { passive: true }); addEventListener("resize", agenda);
+      addEventListener("orientationchange", () => setTimeout(agenda, 300));
+      setInterval(agenda, 1000);   // garante o acerto quando o navegador termina de esconder a barra
+      /* Diagnóstico: abra o site com ?diag=1 para ver as medidas da tela */
+      let diag = null;
+      if (params.get("diag") === "1") {
+        const box = document.createElement("pre");
+        box.style.cssText = "position:fixed;left:8px;top:70px;z-index:9999;margin:0;padding:8px 10px;border-radius:10px;background:rgba(0,0,0,.85);color:#7CFC9A;font:11px/1.35 monospace;pointer-events:none;white-space:pre";
+        document.body.appendChild(box);
+        diag = (seguro, topo) => {
+          const r = dock.getBoundingClientRect();
+          box.textContent = [
+            `innerHeight  ${innerHeight}`, `clientHeight ${document.documentElement.clientHeight}`,
+            `vv.height    ${Math.round(vv.height)}`, `vv.offsetTop ${Math.round(vv.offsetTop)}`,
+            `screen.h     ${screen.height}`, `safe-bottom  ${seguro}`,
+            `dock top/bot ${Math.round(r.top)} / ${Math.round(r.bottom)}`, `dock calc    ${topo}`,
+            `scrollY      ${Math.round(scrollY)}`, (navigator.userAgent.match(/(CriOS|FxiOS|EdgiOS|Version)\/[\d.]+/) || [navigator.userAgent.slice(0, 40)])[0]
+          ].join("\n");
+        };
+      }
       ajusta();
     }
   }

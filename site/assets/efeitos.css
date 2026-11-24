@@ -244,4 +244,5 @@
   box-shadow:0 6px 16px -6px rgba(214,41,118,.8)}
 
 /* ---------- Barra "Ver cupons ativos": sempre dentro da tela (iPhone) ---------- */
-.dock{bottom:calc(14px + env(safe-area-inset-bottom) + var(--dock-extra,0px))}
+.dock{bottom:calc(14px + env(safe-area-inset-bottom))}
+.dock.dock-vv{bottom:auto;top:var(--dock-top)}
