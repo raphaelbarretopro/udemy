@@ -124,6 +124,9 @@ Os comentários chegam como pendentes. No Supabase, abra **Table Editor → come
 - escreva na coluna **resposta** para responder (aparece com o selo "Instrutor");
 - apague a linha para remover.
 
+### Ver os números
+No Supabase, abra **SQL Editor** e rode `select * from resumo;`. Aparece, por certificação: curtidas, **salvos em Minhas metas**, comentários aprovados e pendentes, e compartilhamentos (LinkedIn, WhatsApp e outros). A lista vem ordenada pelas mais salvas, um bom termômetro para escolher o próximo simulado. Esse resumo só você vê; o site não tem acesso a ele.
+
 ### Manter o projeto ativo
 O plano gratuito pausa o projeto depois de 7 dias sem uso. A tarefa `.github/workflows/supabase-ativo.yml` consulta o banco duas vezes por semana para evitar isso.
 

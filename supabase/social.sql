@@ -19,6 +19,14 @@ create table if not exists public.curtidas (
   primary key (cert, dispositivo)
 );
 
+-- "Minhas metas": quem salvou cada certificação (um registro por aparelho)
+create table if not exists public.metas (
+  cert        text not null,
+  dispositivo uuid not null,
+  criado      timestamptz not null default now(),
+  primary key (cert, dispositivo)
+);
+
 create table if not exists public.compartilhamentos (
   id          bigint generated always as identity primary key,
   cert        text not null,
@@ -44,9 +52,10 @@ create index if not exists compart_disp_idx on public.compartilhamentos (disposi
 create index if not exists coment_disp_idx on public.comentarios (dispositivo, criado);
 
 alter table public.curtidas          enable row level security;
+alter table public.metas             enable row level security;
 alter table public.compartilhamentos enable row level security;
 alter table public.comentarios       enable row level security;
-revoke all on public.curtidas, public.compartilhamentos, public.comentarios from anon, authenticated;
+revoke all on public.curtidas, public.metas, public.compartilhamentos, public.comentarios from anon, authenticated;
 
 -- Código de certificação válido: "az-104", "ai-901", "ab-100"...
 create or replace function public._cert_ok(p text) returns boolean
@@ -85,6 +94,21 @@ begin
     delete from curtidas where cert = p_cert and dispositivo = p_dispositivo;
   end if;
   return (select count(*) from curtidas where cert = p_cert);
+end $$;
+
+-- ---------------------------------------------------------------------
+-- Salvar / remover de "Minhas metas" (um por aparelho)
+-- ---------------------------------------------------------------------
+create or replace function public.salvar(p_cert text, p_dispositivo uuid, p_salvar boolean default true)
+returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not _cert_ok(p_cert) then raise exception 'certificacao invalida'; end if;
+  if p_salvar then
+    insert into metas (cert, dispositivo) values (p_cert, p_dispositivo) on conflict do nothing;
+  else
+    delete from metas where cert = p_cert and dispositivo = p_dispositivo;
+  end if;
 end $$;
 
 -- ---------------------------------------------------------------------
@@ -142,5 +166,28 @@ revoke execute on all functions in schema public from public, anon, authenticate
 grant execute on function public.contagens()                            to anon, authenticated;
 grant execute on function public.curtir(text, uuid, boolean)            to anon, authenticated;
 grant execute on function public.compartilhar(text, text, uuid)         to anon, authenticated;
+grant execute on function public.salvar(text, uuid, boolean)            to anon, authenticated;
 grant execute on function public.comentar(text, text, text, uuid)       to anon, authenticated;
 grant execute on function public.comentarios_de(text)                   to anon, authenticated;
+
+-- ---------------------------------------------------------------------
+-- RESUMO PARA VOCÊ: todos os números por certificação, num só lugar.
+-- Veja em SQL Editor:  select * from resumo;
+-- (ou Table Editor > resumo). Não fica disponível para o site.
+-- ---------------------------------------------------------------------
+create or replace view public.resumo as
+with c as (
+  select cert from curtidas union select cert from metas
+  union select cert from compartilhamentos union select cert from comentarios
+)
+select c.cert as certificacao,
+  (select count(*) from curtidas x where x.cert = c.cert)                                as curtidas,
+  (select count(*) from metas x where x.cert = c.cert)                                   as salvos,
+  (select count(*) from comentarios x where x.cert = c.cert and x.aprovado)              as comentarios,
+  (select count(*) from comentarios x where x.cert = c.cert and not x.aprovado)          as pendentes,
+  (select count(*) from compartilhamentos x where x.cert = c.cert and x.canal = 'linkedin') as linkedin,
+  (select count(*) from compartilhamentos x where x.cert = c.cert and x.canal = 'whatsapp') as whatsapp,
+  (select count(*) from compartilhamentos x where x.cert = c.cert and x.canal not in ('linkedin','whatsapp')) as outros_compart
+from c
+order by salvos desc, curtidas desc;
+revoke all on public.resumo from anon, authenticated;

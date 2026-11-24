@@ -151,6 +151,7 @@
     const add = !metas.has(x.id);
     add ? metas.add(x.id) : metas.delete(x.id); gravar("rb_metas", [...metas]); pintar(); pintarCards();
     if (add) estourar(".ig-save", x.id);
+    if (ON) rpc("salvar", { p_cert: x.id, p_dispositivo: DISP, p_salvar: add }).catch(() => {});
     toast(add ? `🔖 ${x.code} salva em Minhas metas. Ative o filtro “Minhas metas” no catálogo para ver todas.` : `${x.code} removida de Minhas metas.`);
     track(add ? "salvar_meta" : "remover_meta", { exame: x.code });
   }
