@@ -21,6 +21,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(RAIZ, "site")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from conteudo_pt import C, TRILHAS
+from conteudo_extra import EXTRA
 
 BASE = json.load(open(os.path.join(RAIZ, "ferramentas", "base_learn.json"), encoding="utf-8"))
 DOMINIO = "https://raphaelbarreto.com.br"
@@ -407,6 +408,41 @@ def preparo(c):
     }
     return dicas[n]
 
+def secoes_extra(c):
+    """Seções escritas à mão (conteudo_extra.py) para as certificações mais buscadas.
+    Devolve (html, [(âncora, título do índice)])."""
+    x = EXTRA.get(c["codigo"])
+    if not x: return "", []
+    cod = c["codigo"]
+    def linka(txt):  # transforma códigos de outras certificações em links
+        t = e(txt)
+        return re.sub(r"\b([A-Z]{2}-\d{3})\b", lambda m: f'<a href="/certificacoes/{m.group(1).lower()}/">{m.group(1)}</a>' if m.group(1) in POR and m.group(1) != cod else m.group(1), t)
+    linhas = "".join(f"<tr><th>Semana {i}<small>{e(t)}</small></th><td>{linka(o)}</td><td>{linka(p)}</td></tr>" for i, (t, o, p) in enumerate(x["semanas"], 1))
+    conf = "".join(f"<div class=\"conf\"><b>{e(t)}</b><p>{linka(d)}</p></div>" for t, d in x["confusoes"])
+    outro, tit, pars = x["compara"]
+    comp = "".join(f"<p>{linka(p)}</p>" for p in pars)
+    html = f"""
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da {cod} em {len(x['semanas'])} semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody>{linhas}</tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova {cod}</h2>
+          <div class="confs">{conf}</div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> {linka(x['dica'])}</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A {cod} vale a pena?</h2>
+          <p>{linka(x['vale'])}</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>{linka(tit)}</h2>
+          {comp}
+        </section>"""
+    toc = [("plano", "Plano de estudo"), ("confunde", "O que mais confunde"), ("vale", "Vale a pena?"), ("compara", f"{cod} x {outro}")]
+    return html, toc
+
 def faq_cert(c):
     """Perguntas frequentes geradas com os dados reais de cada exame.
     Devolve [(pergunta, resposta_html, resposta_texto)] — o texto vai para o JSON-LD."""
@@ -524,6 +560,10 @@ def pagina_cert(c):
     relacionadas = "".join(card_cert(x) for x in rel)
     toc = [("oque", "O que é"), ("resumo", "Resumo do exame"), ("publico", "Para quem é"), ("conteudo", "O que cai na prova"),
            ("preparar", "Como se preparar"), ("rota", "Onde ela se encaixa"), ("faq", "Perguntas frequentes"), ("links", "Links oficiais"), ("comentarios", "Comentários")]
+    extra_html, extra_toc = secoes_extra(c)
+    if extra_toc:
+        i = [a for a, _ in toc].index("preparar") + 1
+        toc = toc[:i] + extra_toc + toc[i:]
     tocs = "".join(f'<a href="#{a}">{b}</a>' for a, b in toc)
     curto = c['nome'].replace('Microsoft Certified: ', '').replace('Microsoft 365 Certified: ', '')
     url = f"{DOMINIO}/certificacoes/{c['id']}/"
@@ -601,6 +641,7 @@ def pagina_cert(c):
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
         </section>
+{extra_html}
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>
           <div class="path graph" data-graph data-edges="{';'.join([f'{a}>{c["codigo"]}' for a in c['antes']] + [f'{c["codigo"]}>{b}' for b in c['depois']])}">

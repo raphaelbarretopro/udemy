@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">SC-900 x SC-200</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a SC-900</h2>
@@ -112,6 +112,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da SC-900 em 4 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>Conceitos e identidade</small></th><td>Zero Trust, defesa em profundidade, modelo de responsabilidade compartilhada, criptografia e hashing, autenticação x autorização, provedores de identidade e federação. Tipos de identidade no Microsoft Entra ID, autenticação multifator, acesso condicional e governança de identidade.</td><td>Abra o centro de administração do Microsoft Entra (um locatário de desenvolvedor ou de avaliação serve) e veja onde ficam usuários, grupos e políticas de acesso condicional.</td></tr><tr><th>Semana 2<small>Soluções de segurança</small></th><td>Segurança de infraestrutura no Azure (NSG, Firewall, DDoS Protection, Bastion), Microsoft Defender for Cloud, Microsoft Sentinel (SIEM e SOAR) e a família Microsoft Defender XDR.</td><td>Faça um mapa com uma linha por produto: o que ele protege, quem usa e um exemplo de alerta que ele gera.</td></tr><tr><th>Semana 3<small>Conformidade com o Microsoft Purview</small></th><td>Portal de Confiança do Serviço, Compliance Manager, rótulos de confidencialidade, prevenção contra perda de dados (DLP), retenção, gestão de registros, risco interno, eDiscovery e auditoria.</td><td>Para cada recurso do Purview, escreva uma pergunta de negócio que ele responde, por exemplo: &quot;como impedir que um CPF saia por e-mail?&quot; (DLP).</td></tr><tr><th>Semana 4<small>Revisão e simulados</small></th><td>Revise a área de soluções de segurança, que é a de maior peso, e os pontos de licenciamento que aparecem nos cenários.</td><td>Faça simulados completos e anote as alternativas que confundem produtos parecidos; revise só esses pares no dia anterior.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova SC-900</h2>
+          <div class="confs"><div class="conf"><b>Microsoft Sentinel x Microsoft Defender XDR</b><p>O Sentinel é o SIEM e SOAR na nuvem: junta registros de muitas fontes, inclusive de fora da Microsoft, e automatiza respostas. O Defender XDR correlaciona alertas dos produtos Defender (endpoint, identidade, e-mail, apps) num só incidente.</p></div><div class="conf"><b>Defender for Cloud x Defender XDR</b><p>O Defender for Cloud cuida da postura e da proteção de cargas de nuvem (Azure, outras nuvens e servidores). O Defender XDR cuida de usuários, dispositivos, e-mail e apps do Microsoft 365.</p></div><div class="conf"><b>Rótulo de confidencialidade x rótulo de retenção</b><p>O de confidencialidade classifica e protege o conteúdo (criptografia, marca d&#x27;água). O de retenção define por quanto tempo o conteúdo é guardado ou quando é apagado.</p></div><div class="conf"><b>Autenticação x autorização</b><p>Autenticação prova quem você é. Autorização define o que você pode fazer depois de entrar.</p></div><div class="conf"><b>NSG x Azure Firewall</b><p>O NSG filtra tráfego por IP, porta e protocolo na sub-rede ou na placa de rede. O Azure Firewall é um serviço gerenciado e central, com regras de aplicação, inteligência de ameaças e registro de tudo que passa.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> Muitas questões trazem um requisito e pedem o produto. Antes de olhar as alternativas, responda mentalmente: isso é identidade (Entra), proteção contra ameaças (Defender ou Sentinel) ou dados e conformidade (Purview)?</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A SC-900 vale a pena?</h2>
+          <p>Vale a pena para quem quer entrar em segurança da informação, para profissionais de TI que passaram a cuidar de identidade ou conformidade e para quem trabalha com auditoria, jurídico ou proteção de dados (LGPD) e precisa entender as ferramentas da Microsoft. Não exige experiência e não expira. Para quem já atua num SOC, ela é um degrau curto; o ganho maior está na <a href="/certificacoes/sc-200/">SC-200</a>.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>SC-900 ou direto para a <a href="/certificacoes/sc-200/">SC-200</a>?</h2>
+          <p>A SC-900 mostra o mapa: o que cada produto de segurança, identidade e conformidade faz. A <a href="/certificacoes/sc-200/">SC-200</a> exige operar esses produtos, escrever consultas KQL e investigar incidentes no Defender XDR e no Sentinel.</p><p>Se você nunca trabalhou com segurança, comece pela SC-900: ela evita que a <a href="/certificacoes/sc-200/">SC-200</a> vire um choque de nomes e produtos.</p><p>Se você já é analista de SOC, pode ir direto para a <a href="/certificacoes/sc-200/">SC-200</a>. A SC-900 não é pré-requisito de nenhuma certificação.</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>

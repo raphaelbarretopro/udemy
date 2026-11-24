@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">AI-901 x AZ-900</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a AI-901</h2>
@@ -102,6 +102,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da AI-901 em 4 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>Conceitos de IA e IA responsável</small></th><td>Cargas de trabalho de IA (visão, linguagem, fala, extração de informações, IA generativa e agentes), os seis princípios de IA responsável da Microsoft e os componentes de um modelo: parâmetros, tokens, temperatura, prompt de sistema.</td><td>Escreva um exemplo de risco para cada princípio de IA responsável e como evitá-lo num app real.</td></tr><tr><th>Semana 2<small>Microsoft Foundry: apps e agentes generativos</small></th><td>Recursos e projetos do Foundry, catálogo de modelos, playground de chat, prompts de sistema, fundamentação com dados próprios (RAG), filtros de conteúdo e criação de agentes.</td><td>No Microsoft Foundry, implante um modelo de chat, teste prompts no playground e crie um agente simples com instruções e uma fonte de conhecimento.</td></tr><tr><th>Semana 3<small>Texto, fala, visão e extração</small></th><td>Análise de texto, tradução, fala para texto e texto para fala, visão computacional, geração de imagens e extração de informações de documentos.</td><td>Teste cada serviço pelo portal com arquivos seus: um áudio, uma foto e um PDF de nota fiscal ou formulário.</td></tr><tr><th>Semana 4<small>Revisão e simulados</small></th><td>A parte de implementação com o Foundry vale mais da metade da prova. Revise a ordem dos passos e as configurações de cada tipo de solução.</td><td>Faça simulados completos e, a cada erro, refaça no portal o passo que você errou.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova AI-901</h2>
+          <div class="confs"><div class="conf"><b>AI-900 x AI-901</b><p>A AI-901 substituiu a AI-900. Ela mantém os conceitos de IA, mas dá muito mais peso à prática no Microsoft Foundry, com IA generativa e agentes. Material de estudo antigo da AI-900 cobre só parte da prova.</p></div><div class="conf"><b>Temperatura x prompt de sistema</b><p>A temperatura controla o quanto a resposta varia (mais baixa, mais previsível). O prompt de sistema define o papel, o tom e os limites do modelo.</p></div><div class="conf"><b>Fundamentação (RAG) x ajuste fino</b><p>Fundamentar é dar ao modelo os seus documentos na hora da pergunta, sem treiná-lo de novo. Ajuste fino muda o comportamento do modelo com novos exemplos de treino.</p></div><div class="conf"><b>Agente x app de chat</b><p>Um app de chat responde a perguntas. Um agente recebe um objetivo, usa ferramentas e fontes de conhecimento e pode executar várias etapas para cumpri-lo.</p></div><div class="conf"><b>Filtros de conteúdo x IA responsável</b><p>Os filtros bloqueiam entradas e saídas nocivas em tempo real. IA responsável é o conjunto de princípios que orienta todo o projeto, do dado usado até a forma de apresentar o resultado.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> Nos cenários de implementação, siga a ordem natural do trabalho no Foundry: criar o recurso ou projeto, escolher e implantar o modelo, configurar e testar. Alternativas fora dessa ordem costumam estar erradas.</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A AI-901 vale a pena?</h2>
+          <p>Vale a pena para quem quer entender IA generativa e agentes na prática, para desenvolvedores e analistas que vão usar o Microsoft Foundry e para profissionais de negócio que precisam conversar com times técnicos sobre IA. Não exige programação avançada. Quem já tem a AI-900 continua certificado; a AI-901 é o caminho para quem está começando agora.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>AI-901 ou <a href="/certificacoes/az-900/">AZ-900</a> primeiro?</h2>
+          <p>A <a href="/certificacoes/az-900/">AZ-900</a> ensina a base do Azure: regiões, assinaturas, custos e governança. A AI-901 assume que você entende o básico de nuvem e vai direto para modelos, agentes e serviços de IA.</p><p>Se você nunca usou o Azure, a <a href="/certificacoes/az-900/">AZ-900</a> deixa a AI-901 mais fácil, porque o Foundry usa os mesmos conceitos de recursos, assinaturas e permissões.</p><p>Se o seu foco é IA e você já navega no portal do Azure, pode começar pela AI-901. Nenhuma das duas é pré-requisito da outra.</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>

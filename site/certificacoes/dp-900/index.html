@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">DP-900 x PL-300</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a DP-900</h2>
@@ -112,6 +112,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da DP-900 em 5 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>Conceitos de dados</small></th><td>Dados estruturados, semiestruturados e não estruturados, formatos de arquivo (CSV, JSON, Parquet), processamento transacional (OLTP) x analítico (OLAP), e os papéis em dados: administrador de banco, engenheiro e analista.</td><td>Pegue um mesmo conjunto de dados e salve em CSV, JSON e Parquet; compare tamanho e legibilidade.</td></tr><tr><th>Semana 2<small>Dados relacionais no Azure</small></th><td>Tabelas, chaves, normalização, SQL básico (SELECT, INSERT, UPDATE, DELETE, JOIN), visões, índices e procedimentos. Azure SQL Database, Instância Gerenciada de SQL, SQL Server em VM e os bancos de código aberto gerenciados (PostgreSQL e MySQL).</td><td>Crie um Azure SQL Database com o banco de exemplo e escreva consultas com JOIN e GROUP BY.</td></tr><tr><th>Semana 3<small>Dados não relacionais</small></th><td>Azure Blob Storage, Data Lake Storage, Azure Files e Table Storage. Azure Cosmos DB e suas APIs (NoSQL, MongoDB, PostgreSQL, Apache Cassandra, Table, Apache Gremlin).</td><td>Crie uma conta do Cosmos DB no nível gratuito e grave alguns documentos JSON.</td></tr><tr><th>Semana 4<small>Analytics</small></th><td>Ingestão e ETL, data warehouse x data lake x lakehouse, Microsoft Fabric, Azure Databricks, analytics em tempo real e visualização com o Power BI.</td><td>Abra uma avaliação do Microsoft Fabric e carregue um arquivo num lakehouse; depois crie um relatório simples.</td></tr><tr><th>Semana 5<small>Revisão e simulados</small></th><td>Conceitos fundamentais e analytics são as áreas de maior peso.</td><td>Faça simulados e revise principalmente a diferença entre os serviços de banco de dados.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova DP-900</h2>
+          <div class="confs"><div class="conf"><b>OLTP x OLAP</b><p>OLTP registra muitas transações pequenas do dia a dia (vendas, cadastros). OLAP consulta grandes volumes de dados históricos para análise e relatórios.</p></div><div class="conf"><b>Azure SQL Database x Instância Gerenciada x SQL em VM</b><p>O SQL Database é o mais gerenciado e serve a um banco. A Instância Gerenciada tem compatibilidade quase total com o SQL Server, ideal para migrar. O SQL em VM dá controle total do sistema operacional e do SQL Server.</p></div><div class="conf"><b>Data lake x data warehouse x lakehouse</b><p>O lake guarda arquivos brutos de qualquer formato. O warehouse guarda dados estruturados e prontos para consulta SQL. O lakehouse junta os dois: arquivos no lake com recursos de tabela e SQL por cima.</p></div><div class="conf"><b>Lote x tempo real</b><p>Em lote, os dados são processados em intervalos (a cada hora, a cada dia). Em tempo real (streaming), cada evento é processado assim que chega.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> Muitas questões pedem o serviço certo para um tipo de dado. Classifique o dado primeiro (relacional, documento, arquivo, evento) e só depois olhe as alternativas.</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A DP-900 vale a pena?</h2>
+          <p>Vale a pena para quem quer começar em dados (análise, engenharia ou banco de dados), para desenvolvedores que precisam entender as opções de banco no Azure e para profissionais de negócio que trabalham com BI. Não exige experiência e não expira. Quem já trabalha com bancos de dados pode ir direto para uma certificação Associate.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>DP-900 ou <a href="/certificacoes/pl-300/">PL-300</a>?</h2>
+          <p>A DP-900 dá a visão geral de dados no Azure: tipos de dados, bancos relacionais e não relacionais e analytics. A <a href="/certificacoes/pl-300/">PL-300</a> é prática e focada no Power BI.</p><p>Se você quer ser analista de dados e já usa Excel, pode ir direto para a <a href="/certificacoes/pl-300/">PL-300</a>; a DP-900 ajuda a entender de onde vêm os dados que você vai analisar.</p><p>Se você quer seguir para engenharia de dados (<a href="/certificacoes/dp-600/">DP-600</a>, <a href="/certificacoes/dp-700/">DP-700</a>) ou administração de banco (<a href="/certificacoes/dp-300/">DP-300</a>), comece pela DP-900.</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>

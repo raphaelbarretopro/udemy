@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">PL-300 x DP-600</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a PL-300</h2>
@@ -112,6 +112,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da PL-300 em 6 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>Preparar os dados</small></th><td>Conexão a fontes (Excel, SQL, SharePoint, web), modos de armazenamento, perfil de dados, Power Query: tipos, colunas calculadas na consulta, mesclar e acrescentar consultas, dinamizar e despivotar, parâmetros.</td><td>Pegue uma planilha bagunçada do seu trabalho e limpe tudo só com o Power Query, sem editar o arquivo original.</td></tr><tr><th>Semana 2<small>Modelar os dados</small></th><td>Esquema estrela, tabelas fato e dimensão, relacionamentos e cardinalidade, direção de filtro, tabela de datas, hierarquias e funções de papel.</td><td>Transforme uma tabela única de vendas num modelo estrela com dimensões de produto, cliente e data.</td></tr><tr><th>Semana 3<small>DAX</small></th><td>Medidas x colunas calculadas, contexto de linha e de filtro, CALCULATE, funções de inteligência de tempo (acumulado no ano, mesmo período do ano anterior), variáveis e funções de iteração (SUMX).</td><td>Escreva medidas de total, acumulado no ano, variação em relação ao ano anterior e porcentagem do total, e confira os resultados numa matriz.</td></tr><tr><th>Semana 4<small>Visualizar e analisar</small></th><td>Escolha do visual certo, formatação condicional, segmentações, indicadores e botões, dicas de ferramenta, detalhamento, análise de tendências e anomalias, design para celular.</td><td>Monte um relatório de duas páginas com navegação por botões e uma página de detalhe acessada por drill-through.</td></tr><tr><th>Semana 5<small>Gerenciar e proteger</small></th><td>Workspaces e funções, aplicativos, atualização agendada e gateway, segurança em nível de linha (RLS), rótulos de confidencialidade, endosso e compartilhamento.</td><td>Crie uma regra de RLS por região e teste com &quot;Exibir como função&quot; antes de publicar.</td></tr><tr><th>Semana 6<small>Revisão e simulados</small></th><td>As três primeiras áreas valem quase o mesmo; revise a que tiver mais erros.</td><td>Faça simulados e repita no Power BI Desktop todo exercício de DAX que você errou.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova PL-300</h2>
+          <div class="confs"><div class="conf"><b>Medida x coluna calculada</b><p>A coluna calculada é gravada linha a linha no modelo e ocupa memória. A medida é calculada na hora, no contexto do visual, e é a escolha certa para totais e porcentagens.</p></div><div class="conf"><b>Mesclar x acrescentar consultas</b><p>Mesclar junta colunas de duas tabelas por uma chave (como um PROCV). Acrescentar empilha as linhas de tabelas com a mesma estrutura.</p></div><div class="conf"><b>Importação x DirectQuery</b><p>Na importação, os dados ficam no modelo e o relatório é rápido, mas depende de atualização. No DirectQuery, cada visual consulta a fonte na hora: dados mais recentes, desempenho menor e algumas limitações de DAX.</p></div><div class="conf"><b>Filtro de relatório x segmentação x RLS</b><p>Filtros e segmentações mudam o que o usuário vê por escolha dele. A RLS restringe as linhas por quem ele é, e o usuário não consegue removê-la.</p></div><div class="conf"><b>Workspace x aplicativo</b><p>O workspace é onde o time cria e edita. O aplicativo é o pacote publicado para os consumidores, com navegação própria e sem acesso de edição.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> Nas questões de DAX, identifique primeiro o contexto: a fórmula vai rodar numa coluna (linha a linha) ou numa medida (no filtro do visual)? Isso elimina metade das alternativas.</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A PL-300 vale a pena?</h2>
+          <p>Vale a pena para analistas de dados e de negócio, para quem já usa Excel avançado e quer migrar para o Power BI e para quem quer uma certificação muito presente em vagas de BI. É prática: quem nunca montou um relatório no Power BI Desktop deve fazer alguns projetos antes. Para quem só consome relatórios, a <a href="/certificacoes/pl-900/">PL-900</a> ou a <a href="/certificacoes/dp-900/">DP-900</a> são suficientes.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>PL-300 x <a href="/certificacoes/dp-600/">DP-600</a>: qual escolher?</h2>
+          <p>A PL-300 é sobre construir relatórios e modelos no Power BI. A <a href="/certificacoes/dp-600/">DP-600</a> vai um nível acima: preparar dados em escala no Microsoft Fabric, com lakehouses, warehouses, notebooks e modelos semânticos grandes.</p><p>Para quem está começando em BI, a PL-300 vem primeiro. A <a href="/certificacoes/dp-600/">DP-600</a> aproveita boa parte do conteúdo de modelagem e DAX da PL-300.</p><p>Se você já trabalha com engenharia de dados ou com o Fabric, a <a href="/certificacoes/dp-600/">DP-600</a> conversa mais com o seu dia a dia.</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>

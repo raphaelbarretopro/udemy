@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">SC-300 x SC-200</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a SC-300</h2>
@@ -112,6 +112,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da SC-300 em 6 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>Locatário e identidades de usuários</small></th><td>Configuração do locatário do Microsoft Entra, domínios personalizados, funções administrativas e unidades administrativas, usuários, grupos e licenças, usuários externos (B2B) e identidade híbrida com sincronização na nuvem e Entra Connect.</td><td>Num locatário de desenvolvedor, crie um domínio, um grupo dinâmico e convide um usuário externo.</td></tr><tr><th>Semana 2<small>Autenticação</small></th><td>Métodos de autenticação, MFA, autenticação sem senha (passkeys, Windows Hello, Authenticator), redefinição de senha por autoatendimento e proteção de senha.</td><td>Ative um método sem senha para um usuário de teste e faça o primeiro login com ele.</td></tr><tr><th>Semana 3<small>Acesso condicional e proteção</small></th><td>Políticas de acesso condicional (atribuições, condições, controles), modo somente relatório, ID Protection (risco de usuário e de entrada) e Global Secure Access.</td><td>Crie uma política que exige MFA fora da rede da empresa, teste em modo somente relatório e só depois ative.</td></tr><tr><th>Semana 4<small>Identidades de workload</small></th><td>Registros de aplicativos, aplicações empresariais, entidades de serviço, identidades gerenciadas, consentimento de permissões e SSO com SAML e OpenID Connect.</td><td>Registre um app, dê a ele uma permissão de API e veja como o consentimento de administrador aparece.</td></tr><tr><th>Semana 5<small>Governança de identidade</small></th><td>Gerenciamento de direitos (pacotes de acesso), revisões de acesso, Privileged Identity Management (PIM), termos de uso e monitoramento com logs de entrada e auditoria.</td><td>Configure o PIM para que a função Administrador Global seja só elegível, com aprovação e tempo limitado.</td></tr><tr><th>Semana 6<small>Revisão e simulados</small></th><td>Autenticação e acesso é a área de maior peso; acesso condicional aparece em muitos cenários.</td><td>Faça simulados e revise quais recursos dependem de qual licença do Entra ID.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova SC-300</h2>
+          <div class="confs"><div class="conf"><b>Acesso condicional x ID Protection</b><p>O acesso condicional aplica regras (exigir MFA, bloquear, exigir dispositivo em conformidade) quando as condições batem. O ID Protection calcula o risco do usuário e da entrada, e esse risco pode virar condição numa política.</p></div><div class="conf"><b>Registro de app x aplicação empresarial</b><p>O registro é a definição do app (a identidade global dele). A aplicação empresarial é a instância desse app dentro do seu locatário, onde você atribui usuários e configura o SSO.</p></div><div class="conf"><b>PIM x gerenciamento de direitos</b><p>O PIM controla funções privilegiadas com ativação por tempo limitado. O gerenciamento de direitos entrega pacotes de acesso (grupos, apps, sites) a usuários comuns e externos, com aprovação e expiração.</p></div><div class="conf"><b>Usuário convidado (B2B) x membro</b><p>O convidado entra com a própria conta da organização de origem e tem permissões padrão mais limitadas. O membro é um usuário do seu locatário.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> Em perguntas sobre acesso condicional, monte a política na cabeça na ordem do portal: quem (usuários), o quê (apps), quando (condições) e então (controles). A alternativa que pula uma dessas partes costuma estar incompleta.</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A SC-300 vale a pena?</h2>
+          <p>Vale a pena para administradores de identidade, analistas de infraestrutura que cuidam do Microsoft 365 e do Entra e para quem quer se especializar em Zero Trust. Identidade é o ponto de partida de quase todo ataque, por isso essa função é muito procurada. Para quem ainda não conhece os conceitos de identidade, a <a href="/certificacoes/sc-900/">SC-900</a> ajuda a começar.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>SC-300 ou <a href="/certificacoes/sc-200/">SC-200</a>?</h2>
+          <p>A SC-300 protege a porta de entrada: contas, autenticação e acessos no Microsoft Entra. A <a href="/certificacoes/sc-200/">SC-200</a> investiga e responde quando algo já aconteceu, com o Sentinel e o Defender XDR.</p><p>Quem administra o Microsoft 365 ou o Azure no dia a dia costuma aproveitar mais a SC-300.</p><p>As duas abrem caminho para a <a href="/certificacoes/sc-100/">SC-100</a> (arquiteto de segurança). A SC-300 também é uma das opções aceitas para a <a href="/certificacoes/ms-102/">MS-102</a> (administrador do Microsoft 365).</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>

@@ -269,3 +269,21 @@
 .faq-item[open] summary::after{transform:rotate(45deg)}
 .faq-item p{padding:0 16px 16px;margin:0;color:var(--ink2);line-height:1.6}
 .faq-item a{color:#9dbcff;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- Guias aprofundados: plano de estudo, confusões, dica ---------- */
+.tbl.plano th small{display:block;margin-top:4px;font:500 12.5px/1.35 var(--body);color:var(--ink3);text-transform:none;letter-spacing:0}
+.tbl.plano td{vertical-align:top;line-height:1.55;color:var(--ink2)}
+.tbl.plano tbody th{vertical-align:top;white-space:nowrap}
+.confs{display:grid;gap:10px;margin-top:12px}
+.conf{padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.22)}
+.conf b{display:block;color:var(--ink);margin-bottom:4px}
+.conf p{margin:0;color:var(--ink2);line-height:1.6}
+.dica-prova{margin-top:14px;padding:14px 16px;border-radius:14px;border:1px solid rgba(251,191,36,.35);background:rgba(251,191,36,.08);color:var(--ink2);line-height:1.6}
+.dica-prova b{color:#fde68a}
+#plano a,#confunde a,#vale a,#compara a{color:#9dbcff;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:640px){
+  .tbl.plano thead{display:none}
+  .tbl.plano tr{display:grid;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .tbl.plano th,.tbl.plano td{display:block;padding:0;border:0;white-space:normal}
+  .tbl.plano td:nth-child(3)::before{content:"Como praticar: ";font-weight:600;color:var(--ink)}
+}

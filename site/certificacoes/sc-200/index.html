@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">SC-200 x SC-300</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a SC-200</h2>
@@ -107,6 +107,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da SC-200 em 6 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>KQL</small></th><td>Kusto Query Language: where, project, summarize, extend, join, render e funções de tempo. Base para tudo no Sentinel e na caça avançada do Defender XDR.</td><td>Use o ambiente de demonstração do Log Analytics e escreva consultas que respondem perguntas como &quot;quais usuários tiveram mais falhas de login na última semana&quot;.</td></tr><tr><th>Semana 2<small>Microsoft Sentinel</small></th><td>Workspaces, conectores de dados, regras de análise (agendadas, quase em tempo real, de anomalias), incidentes, playbooks com Logic Apps, pastas de trabalho e regras de automação.</td><td>Ative o Sentinel num workspace de teste, conecte uma fonte e crie uma regra agendada que gera incidente.</td></tr><tr><th>Semana 3<small>Microsoft Defender XDR</small></th><td>Incidentes e alertas unificados, Defender for Endpoint (proteção, investigação e resposta em dispositivos), Defender for Office 365, Defender for Identity e Defender for Cloud Apps.</td><td>Num locatário de avaliação, explore um incidente de exemplo e siga a linha do tempo do dispositivo envolvido.</td></tr><tr><th>Semana 4<small>Resposta a incidentes</small></th><td>Triagem, investigação, ações de resposta (isolar dispositivo, bloquear usuário, quarentena de e-mail), investigação e resposta automatizadas e investigação no Microsoft 365 com o Purview.</td><td>Escreva um roteiro de resposta para um caso de phishing, do alerta até o fechamento do incidente.</td></tr><tr><th>Semana 5<small>Caça a ameaças</small></th><td>Caça avançada no Defender XDR, consultas de caça e livros de notas no Sentinel, marcadores e transformação de achados em regras de detecção.</td><td>Transforme uma consulta de caça que encontrou algo em uma regra de análise agendada.</td></tr><tr><th>Semana 6<small>Revisão e simulados</small></th><td>Gerenciar o ambiente de operações é a área de maior peso.</td><td>Faça simulados e treine KQL todos os dias por 15 minutos até a prova.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova SC-200</h2>
+          <div class="confs"><div class="conf"><b>Regra de análise x regra de automação x playbook</b><p>A regra de análise detecta e gera alertas ou incidentes. A regra de automação reage a incidentes de forma simples (atribuir, marcar, fechar). O playbook (Logic App) executa ações complexas e integra outros sistemas.</p></div><div class="conf"><b>Caça avançada no Defender XDR x caça no Sentinel</b><p>A do Defender XDR consulta os dados dos produtos Defender. A do Sentinel consulta tudo o que foi ingerido no workspace, inclusive fontes de fora da Microsoft.</p></div><div class="conf"><b>Alerta x incidente</b><p>O alerta é um sinal isolado de um produto. O incidente agrupa alertas relacionados ao mesmo ataque para investigação conjunta.</p></div><div class="conf"><b>Isolar dispositivo x restringir execução de apps</b><p>Isolar corta a comunicação de rede do dispositivo, mantendo só a conexão com o Defender. Restringir a execução impede que programas não assinados pela Microsoft rodem.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> Quando a pergunta pedir &quot;o mínimo de esforço&quot;, prefira o recurso nativo e automático (regra de automação, investigação automatizada) a montar um playbook ou uma consulta do zero.</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A SC-200 vale a pena?</h2>
+          <p>Vale a pena para analistas de SOC, profissionais de resposta a incidentes e para quem quer trabalhar com segurança operacional usando ferramentas Microsoft. Exige prática com KQL e com os portais do Defender e do Sentinel. Para quem ainda não conhece o ecossistema de segurança da Microsoft, a <a href="/certificacoes/sc-900/">SC-900</a> é um bom primeiro passo.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>SC-200 ou <a href="/certificacoes/sc-300/">SC-300</a>?</h2>
+          <p>A SC-200 é sobre detectar e responder a ataques: Sentinel, Defender XDR e KQL. A <a href="/certificacoes/sc-300/">SC-300</a> é sobre identidade: usuários, autenticação, acesso condicional e governança no Microsoft Entra.</p><p>Se você quer trabalhar num SOC, vá de SC-200. Se você cuida de contas, acessos e logins da empresa, a <a href="/certificacoes/sc-300/">SC-300</a> é mais útil.</p><p>As duas abrem caminho para a <a href="/certificacoes/sc-100/">SC-100</a> (arquiteto de segurança), que exige uma destas: SC-200, <a href="/certificacoes/sc-300/">SC-300</a> ou <a href="/certificacoes/sc-500/">SC-500</a>.</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>

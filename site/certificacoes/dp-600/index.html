@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">DP-600 x PL-300</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a DP-600</h2>
@@ -107,6 +107,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da DP-600 em 6 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>Microsoft Fabric e workspaces</small></th><td>Capacidades e workspaces, itens do Fabric (lakehouse, warehouse, notebook, pipeline, fluxo de dados, modelo semântico), OneLake, atalhos e o ciclo de vida com Git e pipelines de implantação.</td><td>Ative uma avaliação do Fabric, crie um workspace e conecte-o a um repositório Git.</td></tr><tr><th>Semana 2<small>Obter e transformar dados</small></th><td>Pipelines e Dataflow Gen2, notebooks com PySpark, lakehouse e warehouse, formato Delta, carga incremental, limpeza, desduplicação e modelagem dimensional.</td><td>Carregue um arquivo no lakehouse por um pipeline e transforme-o num notebook em tabelas Delta de fato e dimensão.</td></tr><tr><th>Semana 3<small>Consultar e analisar</small></th><td>SQL no warehouse e no endpoint SQL do lakehouse, KQL em bancos de dados em tempo real, editor visual de consultas e funções de janela.</td><td>Escreva a mesma consulta em SQL no endpoint do lakehouse e no warehouse, e compare o que cada um permite.</td></tr><tr><th>Semana 4<small>Modelos semânticos</small></th><td>Modo Direct Lake x importação x DirectQuery, esquema estrela, DAX avançado, grupos de cálculo, campos de parâmetro, agregações e otimização com ferramentas externas.</td><td>Crie um modelo em Direct Lake sobre as suas tabelas Delta e meça o desempenho de uma medida com o analisador de desempenho.</td></tr><tr><th>Semana 5<small>Segurança e governança</small></th><td>Funções de workspace, permissões de item, segurança em nível de linha, de coluna e de objeto, rótulos de confidencialidade, endosso e linhagem.</td><td>Aplique RLS no modelo semântico e uma permissão de item restrita no warehouse; teste com outro usuário.</td></tr><tr><th>Semana 6<small>Revisão e simulados</small></th><td>Preparar dados vale quase metade da prova.</td><td>Faça simulados e revise a escolha entre lakehouse, warehouse e cada modo de armazenamento.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova DP-600</h2>
+          <div class="confs"><div class="conf"><b>Lakehouse x warehouse</b><p>O lakehouse guarda arquivos e tabelas Delta e é trabalhado com Spark, com SQL só leitura pelo endpoint. O warehouse é SQL completo, com escrita por T-SQL e transações.</p></div><div class="conf"><b>Direct Lake x importação x DirectQuery</b><p>Direct Lake lê as tabelas Delta do OneLake direto na memória, sem cópia e sem consulta à fonte a cada visual. Importação copia os dados para o modelo. DirectQuery consulta a fonte a cada interação.</p></div><div class="conf"><b>Pipeline x Dataflow Gen2 x notebook</b><p>O pipeline orquestra e copia dados. O Dataflow Gen2 transforma com Power Query, sem código. O notebook transforma com código (PySpark, SQL) e escala para grandes volumes.</p></div><div class="conf"><b>Atalho x cópia de dados</b><p>O atalho aponta para dados em outro lugar (outro lakehouse, ADLS, S3) sem copiá-los. A cópia duplica os dados e precisa de atualização.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> Quando a questão falar de &quot;sem duplicar dados&quot; ou &quot;dados mais recentes com bom desempenho&quot;, pense em atalhos e Direct Lake antes de cópias e importação.</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A DP-600 vale a pena?</h2>
+          <p>Vale a pena para profissionais de BI que querem ir além do Power BI, para analistas que já dominam DAX e modelagem e para quem trabalha ou vai trabalhar com o Microsoft Fabric. Exige prática com SQL, DAX e um pouco de PySpark. Para quem está começando em BI, a <a href="/certificacoes/pl-300/">PL-300</a> vem antes.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>DP-600 ou <a href="/certificacoes/pl-300/">PL-300</a> primeiro?</h2>
+          <p>A <a href="/certificacoes/pl-300/">PL-300</a> ensina a construir relatórios e modelos no Power BI. A DP-600 usa esse conhecimento e acrescenta engenharia de dados no Fabric: lakehouse, warehouse, pipelines e modelos semânticos grandes.</p><p>Quem tem a <a href="/certificacoes/pl-300/">PL-300</a> já domina boa parte da área de modelos semânticos e DAX da DP-600, que vale de 25% a 30% da prova.</p><p>Se você vem da engenharia de dados e não do BI, a DP-600 pode vir primeiro, mas reforce DAX e modelagem antes.</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>

@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">AZ-900 x SC-900</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a AZ-900</h2>
@@ -107,6 +107,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da AZ-900 em 4 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>Conceitos de nuvem</small></th><td>Modelos de serviço (IaaS, PaaS, SaaS), modelos de implantação (pública, privada, híbrida), modelo de responsabilidade compartilhada, CapEx x OpEx, elasticidade, escalabilidade e alta disponibilidade.</td><td>Monte uma tabela com um exemplo real de cada modelo de serviço e marque, em cada um, o que é responsabilidade sua e o que é da Microsoft.</td></tr><tr><th>Semana 2<small>Arquitetura e serviços do Azure</small></th><td>Regiões, pares de regiões, zonas de disponibilidade, grupos de recursos e assinaturas; máquinas virtuais, App Service, contêineres e Functions; redes virtuais, VPN e ExpressRoute; tipos de armazenamento e camadas de acesso.</td><td>Crie uma conta gratuita do Azure, suba uma máquina virtual pequena e uma conta de armazenamento, e apague tudo no fim para não gerar custo.</td></tr><tr><th>Semana 3<small>Identidade, governança e custos</small></th><td>Microsoft Entra ID, autenticação multifator e acesso condicional, RBAC, Azure Policy, bloqueios de recursos, tags, calculadora de preços, calculadora de TCO e Cost Management.</td><td>Aplique uma tag e um bloqueio de exclusão no grupo de recursos que você criou e veja o que acontece ao tentar apagá-lo.</td></tr><tr><th>Semana 4<small>Revisão e simulados</small></th><td>Ferramentas de gerenciamento (portal, CLI, PowerShell, ARM e Bicep), Azure Monitor, Service Health e Advisor. Releia as áreas em que você errou mais.</td><td>Faça simulados completos e só agende a prova quando passar de 800 com folga em pelo menos dois seguidos.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova AZ-900</h2>
+          <div class="confs"><div class="conf"><b>Zona de disponibilidade x par de regiões</b><p>Zona protege contra a falha de um datacenter dentro da mesma região. Par de regiões protege contra um desastre na região inteira e define a ordem de recuperação da Microsoft.</p></div><div class="conf"><b>RBAC x Azure Policy x bloqueio</b><p>RBAC diz quem pode fazer o quê. Policy diz quais configurações são permitidas, para qualquer pessoa. O bloqueio impede apagar ou alterar um recurso, mesmo para quem tem permissão.</p></div><div class="conf"><b>Calculadora de preços x calculadora de TCO</b><p>A de preços estima o custo de serviços que você vai usar no Azure. A de TCO compara o custo de manter a infraestrutura no seu datacenter com o custo de migrar para o Azure.</p></div><div class="conf"><b>Escalabilidade x elasticidade</b><p>Escalabilidade é a capacidade de aumentar recursos. Elasticidade é fazer isso automaticamente, para cima e para baixo, conforme a demanda.</p></div><div class="conf"><b>Camadas de acesso do Blob Storage</b><p>Hot é para dados acessados com frequência, Cool e Cold para acesso cada vez mais raro e Archive para guardar por muito tempo, com custo baixo de armazenamento e alto de leitura e espera para recuperar.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> A prova cobra o conceito certo para cada cenário. Quando duas alternativas parecerem corretas, procure a palavra que define o requisito: custo, disponibilidade, conformidade ou controle.</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A AZ-900 vale a pena?</h2>
+          <p>Vale a pena para quem está começando em nuvem, para quem trabalha com vendas, compras ou gestão de projetos que envolvem Azure e para quem quer um primeiro selo no currículo antes de uma certificação técnica. Ela não expira e não exige experiência. Para quem já administra o Azure no dia a dia, ela é opcional: dá para ir direto à <a href="/certificacoes/az-104/">AZ-104</a>.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>AZ-900 ou <a href="/certificacoes/sc-900/">SC-900</a>: qual fazer primeiro?</h2>
+          <p>Faça a AZ-900 primeiro se o seu objetivo é infraestrutura, desenvolvimento ou dados no Azure. Ela dá o vocabulário de nuvem que todas as outras provas assumem que você já tem.</p><p>Faça a <a href="/certificacoes/sc-900/">SC-900</a> primeiro se você quer seguir para segurança, identidade ou conformidade. Ela fala menos de serviços do Azure e mais de Microsoft Entra, Defender, Sentinel e Purview.</p><p>As duas são Fundamentals, não expiram e se complementam. Muita gente faz as duas em sequência: os temas de identidade e segurança da AZ-900 reaparecem, com mais profundidade, na <a href="/certificacoes/sc-900/">SC-900</a>.</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>

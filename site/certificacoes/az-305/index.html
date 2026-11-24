@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">AZ-305 x AZ-104</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a AZ-305</h2>
@@ -112,6 +112,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da AZ-305 em 6 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>Identidade, governança e monitoramento</small></th><td>Desenho de autenticação e autorização com Microsoft Entra ID, identidades gerenciadas, Key Vault, grupos de gerenciamento, Azure Policy em escala, estratégia de logs e monitoramento com Azure Monitor e Log Analytics.</td><td>Desenhe a hierarquia de grupos de gerenciamento e assinaturas de uma empresa fictícia com três áreas e dois ambientes.</td></tr><tr><th>Semana 2<small>Armazenamento de dados</small></th><td>Escolha entre Azure SQL, Cosmos DB, armazenamento e opções analíticas; redundância, camadas, particionamento e integração de dados com Data Factory.</td><td>Para três cenários diferentes (cadastro, catálogo global, histórico de logs), escolha o armazenamento e justifique custo, latência e consistência.</td></tr><tr><th>Semana 3<small>Continuidade de negócios</small></th><td>RPO e RTO, Azure Backup, Site Recovery, replicação geográfica de bancos, zonas e regiões, e desenho para alta disponibilidade.</td><td>Monte uma tabela com RPO e RTO para cada camada de um sistema e a tecnologia que atende cada meta.</td></tr><tr><th>Semana 4<small>Infraestrutura e aplicações</small></th><td>Escolha de computação (VM, App Service, contêineres, AKS, Functions), arquitetura de aplicações (filas, mensageria, cache, API Management), rede (hub-spoke, conectividade híbrida, balanceadores) e migração.</td><td>Desenhe uma arquitetura hub-spoke com conexão ao datacenter e saída por um firewall central.</td></tr><tr><th>Semana 5<small>Frameworks e revisão</small></th><td>Well-Architected Framework (confiabilidade, segurança, custo, excelência operacional, desempenho) e Cloud Adoption Framework.</td><td>Pegue uma arquitetura de referência do Azure Architecture Center e identifique como ela atende cada pilar.</td></tr><tr><th>Semana 6<small>Simulados</small></th><td>Estudos de caso longos são comuns; treine ler o cenário inteiro antes das perguntas.</td><td>Faça simulados cronometrados e revise cada erro pelo requisito que você deixou passar.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova AZ-305</h2>
+          <div class="confs"><div class="conf"><b>RPO x RTO</b><p>RPO é quanto dado você aceita perder (o ponto no tempo para onde volta). RTO é quanto tempo o sistema pode ficar fora até voltar.</p></div><div class="conf"><b>Alta disponibilidade x recuperação de desastres</b><p>Alta disponibilidade mantém o sistema no ar durante falhas comuns, geralmente dentro de uma região. Recuperação de desastres traz o sistema de volta depois de uma falha grande, normalmente em outra região.</p></div><div class="conf"><b>Azure Front Door x Traffic Manager x Application Gateway</b><p>O Front Door é global e trabalha com HTTP, com cache e WAF. O Traffic Manager é global e decide por DNS. O Application Gateway é regional, na camada 7.</p></div><div class="conf"><b>Identidade gerenciada x entidade de serviço</b><p>A identidade gerenciada é criada e rotacionada pelo Azure para um recurso, sem segredo para guardar. A entidade de serviço é uma identidade de app que você mesmo gerencia, inclusive os segredos ou certificados.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> Em cada questão, sublinhe mentalmente o requisito decisivo: menor custo, menor esforço de gestão, maior disponibilidade ou conformidade. A AZ-305 quase sempre tem duas soluções que funcionam; só uma atende esse requisito.</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A AZ-305 vale a pena?</h2>
+          <p>Vale a pena para administradores Azure com experiência que querem passar para arquitetura, para consultores que desenham soluções para clientes e para quem lidera migrações para a nuvem. Exige a <a href="/certificacoes/az-104/">AZ-104</a> para emitir a certificação e muita prática: sem experiência real, os estudos de caso ficam difíceis. Para quem ainda está aprendendo a operar o Azure, a <a href="/certificacoes/az-104/">AZ-104</a> vem antes.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>Por que a <a href="/certificacoes/az-104/">AZ-104</a> vem antes da AZ-305?</h2>
+          <p>A Microsoft só emite a certificação de arquiteto para quem tem a <a href="/certificacoes/az-104/">AZ-104</a>. Além da regra, a AZ-305 supõe que você já sabe configurar o que vai desenhar.</p><p>A <a href="/certificacoes/az-104/">AZ-104</a> treina a execução (como configurar). A AZ-305 treina a decisão (o que escolher e por quê, diante de requisitos de custo, disponibilidade e conformidade).</p><p>Quem tenta a AZ-305 sem prática costuma errar justamente os detalhes de limite e comportamento dos serviços que a <a href="/certificacoes/az-104/">AZ-104</a> ensina.</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>

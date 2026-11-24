@@ -64,7 +64,7 @@
     </section>
 
     <div class="cert-layout">
-      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
+      <nav class="toc" aria-label="Neste guia"><span class="eyebrow">Neste guia</span><a href="#oque">O que é</a><a href="#resumo">Resumo do exame</a><a href="#publico">Para quem é</a><a href="#conteudo">O que cai na prova</a><a href="#preparar">Como se preparar</a><a href="#plano">Plano de estudo</a><a href="#confunde">O que mais confunde</a><a href="#vale">Vale a pena?</a><a href="#compara">AZ-104 x AZ-305</a><a href="#rota">Onde ela se encaixa</a><a href="#faq">Perguntas frequentes</a><a href="#links">Links oficiais</a><a href="#comentarios">Comentários</a></nav>
       <article class="cert-body">
         <section id="oque" class="block reveal">
           <h2>O que é a AZ-104</h2>
@@ -117,6 +117,25 @@
             <li><b>Treine com simulados</b><span>Questões no formato real mostram onde você ainda erra.</span></li>
             <li><b>Agende quando passar com folga</b><span>Mire em 800+ nos simulados antes de marcar a prova.</span></li>
           </ol>
+        </section>
+
+        <section id="plano" class="block reveal">
+          <h2>Plano de estudo da AZ-104 em 6 semanas</h2>
+          <p class="muted">Ritmo pensado para cerca de 1 hora por dia. Se você já trabalha com o assunto, junte semanas; se está começando do zero, estique.</p>
+          <div class="table-wrap"><table class="tbl plano"><thead><tr><th>Semana</th><th>O que estudar</th><th>Como praticar</th></tr></thead><tbody><tr><th>Semana 1<small>Identidade e governança</small></th><td>Usuários e grupos no Microsoft Entra ID, unidades administrativas, RBAC com funções internas e personalizadas, Azure Policy, bloqueios, tags, grupos de gerenciamento e orçamentos.</td><td>Crie um usuário, dê a ele a função Leitor num grupo de recursos e confirme no portal o que ele consegue e o que não consegue fazer.</td></tr><tr><th>Semana 2<small>Armazenamento</small></th><td>Contas de armazenamento, redundância (LRS, ZRS, GRS, GZRS), camadas de acesso e regras de ciclo de vida, chaves de acesso e SAS, Azure Files, Blob Storage e AzCopy.</td><td>Gere uma SAS com validade de uma hora para um contêiner e teste o acesso antes e depois do vencimento.</td></tr><tr><th>Semana 3<small>Computação</small></th><td>Máquinas virtuais, conjuntos de dimensionamento, conjuntos e zonas de disponibilidade, ARM templates e Bicep, Azure Container Instances, Container Apps e App Service com slots de implantação.</td><td>Implante a mesma VM pelo portal e por um arquivo Bicep, e redimensione-a; depois publique um app no App Service usando um slot de homologação.</td></tr><tr><th>Semana 4<small>Redes</small></th><td>Redes virtuais e sub-redes, emparelhamento, NSG e ASG, rotas definidas pelo usuário, Azure Bastion, endpoints de serviço e privados, DNS do Azure, Load Balancer e Application Gateway.</td><td>Monte duas redes emparelhadas com uma VM em cada e libere só a porta necessária no NSG; teste com o Network Watcher.</td></tr><tr><th>Semana 5<small>Monitoramento e backup</small></th><td>Azure Monitor, métricas, logs e alertas, Log Analytics, Network Watcher, Azure Backup e Site Recovery.</td><td>Crie um alerta de CPU para uma VM e um backup com política diária; restaure um arquivo.</td></tr><tr><th>Semana 6<small>Revisão e simulados</small></th><td>Revise os temas em que errou e refaça os laboratórios correspondentes.</td><td>Faça simulados cronometrados de 100 minutos; a AZ-104 tem cenários longos e o tempo pesa.</td></tr></tbody></table></div>
+        </section>
+        <section id="confunde" class="block reveal">
+          <h2>O que mais confunde na prova AZ-104</h2>
+          <div class="confs"><div class="conf"><b>LRS x ZRS x GRS x GZRS</b><p>LRS copia os dados dentro de um datacenter, ZRS entre zonas da mesma região, GRS para uma região secundária e GZRS combina zonas na primária com a cópia para a secundária.</p></div><div class="conf"><b>Conjunto de disponibilidade x zona de disponibilidade</b><p>O conjunto espalha as VMs por racks e domínios de atualização dentro de um datacenter. A zona coloca as VMs em datacenters diferentes da mesma região, com proteção maior.</p></div><div class="conf"><b>Endpoint de serviço x endpoint privado</b><p>O endpoint de serviço leva o tráfego da sub-rede ao serviço pela rede da Microsoft, mas o serviço continua com IP público. O endpoint privado dá ao serviço um IP privado dentro da sua rede virtual.</p></div><div class="conf"><b>Load Balancer x Application Gateway</b><p>O Load Balancer distribui tráfego na camada 4 (IP e porta). O Application Gateway trabalha na camada 7 (HTTP), com roteamento por caminho, terminação TLS e firewall de aplicação web.</p></div><div class="conf"><b>Chave de acesso x SAS</b><p>A chave dá acesso total à conta de armazenamento. A SAS dá acesso limitado por tempo, permissão e recurso, e é a opção certa para compartilhar com terceiros.</p></div></div>
+          <p class="dica-prova"><b>Dica para o dia da prova:</b> Leia o fim da pergunta primeiro: o requisito (&quot;com o menor custo&quot;, &quot;sem tempo de inatividade&quot;, &quot;com o mínimo de esforço administrativo&quot;) decide entre alternativas tecnicamente corretas.</p>
+        </section>
+        <section id="vale" class="block reveal">
+          <h2>A AZ-104 vale a pena?</h2>
+          <p>Vale a pena para quem administra ou quer administrar ambientes Azure, para analistas de infraestrutura migrando para nuvem e para quem mira cargos de cloud engineer. É uma das certificações do Azure mais pedidas em vagas e é pré-requisito da <a href="/certificacoes/az-305/">AZ-305</a> (arquiteto). Para quem só precisa entender a nuvem sem operá-la, a <a href="/certificacoes/az-900/">AZ-900</a> basta.</p>
+        </section>
+        <section id="compara" class="block reveal">
+          <h2>AZ-104 x <a href="/certificacoes/az-305/">AZ-305</a>: qual a diferença?</h2>
+          <p>A AZ-104 pergunta como fazer: configurar, implantar e corrigir recursos. A <a href="/certificacoes/az-305/">AZ-305</a> pergunta o que escolher: desenhar a solução que atende requisitos de custo, disponibilidade, segurança e conformidade.</p><p>Para receber a certificação de arquiteto (<a href="/certificacoes/az-305/">AZ-305</a>), a Microsoft exige ter a AZ-104. Por isso a ordem natural é AZ-104 primeiro.</p>
         </section>
         <section id="rota" class="block reveal">
           <h2>Onde ela se encaixa</h2>
