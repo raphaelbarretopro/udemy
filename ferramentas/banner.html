@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1584px;height:396px;overflow:hidden;background:#07080f}
+  #banner{position:relative;width:1584px;height:396px;overflow:hidden;color:#eef1ff;font-family:Inter,system-ui,sans-serif;
+    background:
+      radial-gradient(620px 420px at 38% -10%,rgba(79,140,255,.42),transparent 70%),
+      radial-gradient(520px 380px at 100% 110%,rgba(255,154,60,.30),transparent 70%),
+      radial-gradient(420px 300px at 75% 0%,rgba(124,92,255,.28),transparent 70%),
+      #07080f}
+  .grid{position:absolute;inset:0;opacity:.45;
+    background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+    background-size:44px 44px;-webkit-mask:radial-gradient(900px 400px at 60% 40%,#000,transparent 85%)}
+  /* área livre para a foto do perfil (canto inferior esquerdo) */
+  .texto{position:absolute;left:560px;top:52px;width:600px}
+  .eyebrow{display:flex;align-items:center;gap:12px;font:600 14px Inter;letter-spacing:.12em;text-transform:uppercase;color:#9fb4ff}
+  .eyebrow i{display:block;width:34px;height:2px;background:linear-gradient(90deg,#4f8cff,#ff9a3c)}
+  h1{margin-top:16px;font:700 43px/1.08 "Space Grotesk";letter-spacing:-.02em}
+  h1 .grad{background:linear-gradient(90deg,#7aa6ff,#b58cff 55%,#ffb070);-webkit-background-clip:text;color:transparent}
+  .sub{margin-top:14px;font:500 18px/1.45 Inter;color:#b4bbd6;max-width:560px}
+  .url{margin-top:20px;display:inline-flex;align-items:center;gap:10px;padding:11px 20px;border-radius:999px;
+    background:linear-gradient(90deg,#4f8cff,#7c5cff);font:700 21px Inter;box-shadow:0 14px 34px -12px rgba(79,140,255,.9)}
+  .url svg{width:20px;height:20px}
+  .lado{position:absolute;right:52px;top:46px;width:372px;display:flex;flex-direction:column;align-items:center;gap:22px}
+  .selos{display:flex;align-items:flex-end;gap:14px}
+  .selos img{width:96px;height:96px;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55))}
+  .selos img.meio{width:116px;height:116px}
+  .codigos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+  .codigos span{text-align:center;padding:10px 0;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);
+    font:700 20px "Space Grotesk";letter-spacing:.02em}
+  .codigos span.on{border-color:rgba(52,211,153,.55);background:rgba(52,211,153,.12);color:#a7f3d0}
+  .legenda{font:500 14px Inter;color:#8d95b3;letter-spacing:.02em}
+  .legenda b{color:#a7f3d0;font-weight:600}
+</style>
+</head>
+<body>
+<div id="banner">
+  <div class="grid"></div>
+  <div class="texto">
+    <div class="eyebrow"><i></i>Microsoft Certified Educator · Instrutor SENAI</div>
+    <h1>Simulados em português<br>para <span class="grad">certificações Microsoft</span></h1>
+    <p class="sub">Questões no estilo da prova real, com a explicação de cada alternativa, e o guia gratuito das 50 certificações.</p>
+    <div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>raphaelbarreto.com.br</div>
+  </div>
+  <div class="lado">
+    <div class="selos">
+      <img src="../site/assets/selos/microsoft-certified-fundamentals-badge.svg" alt="">
+      <img class="meio" src="../site/assets/selos/microsoft-certified-associate-badge.svg" alt="">
+      <img src="../site/assets/selos/microsoft-certified-expert-badge.svg" alt="">
+    </div>
+    <div class="codigos">
+      <span class="on">AZ-900</span><span class="on">SC-900</span><span class="on">AI-901</span>
+      <span>PL-900</span><span>DP-900</span><span>AB-900</span>
+    </div>
+    <div class="legenda"><b>Verde:</b> simulado na Udemy · demais em breve</div>
+  </div>
+</div>
+<script>
+  /* ?guia=1 desenha onde a foto do perfil cobre o banner (só para conferir, não sai na imagem final) */
+  if (new URLSearchParams(location.search).get("guia")) {
+    const b = document.getElementById("banner");
+    [["computador", 44, 160, 290], ["celular", 60, 170, 470]].forEach(([n, x, y, d]) => {
+      const c = document.createElement("div");
+      c.style.cssText = `position:absolute;left:${x}px;top:${y}px;width:${d}px;height:${d}px;border-radius:50%;border:3px dashed ${n === "celular" ? "#ff5f6d" : "#34d399"};z-index:9`;
+      b.appendChild(c);
+    });
+  }
+</script>
+</body>
+</html>
