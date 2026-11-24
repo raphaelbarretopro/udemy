@@ -246,3 +246,12 @@
 /* ---------- Barra "Ver cupons ativos": sempre dentro da tela (iPhone) ---------- */
 .dock{bottom:calc(14px + env(safe-area-inset-bottom))}
 .dock.dock-vv{bottom:auto;top:var(--dock-top)}
+
+/* ---------- Resultado do "Descobrir minha certificação" no celular: selo e código em cima, texto embaixo ---------- */
+.result .rec > div{min-width:0}
+@media (max-width:640px){
+  .result .rec{flex-wrap:wrap;align-items:center;gap:12px 14px;padding:18px}
+  .result .rec .selo-rec{width:64px;height:64px}
+  .result .rec .code{font-size:clamp(30px,9vw,40px)}
+  .result .rec > div{flex:1 1 100%}
+}
