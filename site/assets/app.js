@@ -15,7 +15,7 @@
         <div><h3>${esc(s.nome)}</h3><p class="desc">${esc(s.resumo)}</p></div>
         <div class="tags"><span class="tag">${esc(s.nivel)}</span></div>
         ${guia}
-        <div class="vols"><a class="vol main" href="#alerta" data-notify="${esc(s.codigo)}">🔔 Avise-me no lançamento <small>cupom de estreia</small></a></div>
+        <div class="vols"><a class="vol main" href="#alerta" data-notify="${esc(s.codigo)}"><span>🔔 Avise-me no lançamento</span></a></div>
         ${barra}
       </article>`;
     }
@@ -30,7 +30,7 @@
     const price = active && s.cupom.preco ? `<div class="price"><s>${esc(S.precoOriginal)}</s><strong>${esc(s.cupom.preco)}</strong></div>` : "";
     const vols = s.cursos.map((c, i) => `
       <a class="vol ${i === 0 ? "main" : ""}" href="${esc(courseUrl(s, c))}" target="_blank" rel="noopener" data-go="${esc(s.id)}" data-curso="${esc(c.rotulo)}">
-        <span>${esc(c.rotulo)}</span><small>${fmt(c.questoes)} questões ↗</small>
+        <span>${esc(c.rotulo)}</span><i class="vol-seta" aria-hidden="true">↗</i>
       </a>`).join("");
     return `<article class="card ${isAws ? "aws" : ""} reveal" id="${esc(s.id)}" data-tilt>
       <div class="card-top"><span class="code">${esc(s.codigo)}</span></div>

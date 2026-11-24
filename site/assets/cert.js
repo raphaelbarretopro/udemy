@@ -17,7 +17,7 @@
       <div class="meta"><span><b>${fmt(totalQ(s))}</b> questões com explicação</span>${rating}</div>
       ${active && s.cupom.preco ? `<div class="price"><s>${esc(S.precoOriginal)}</s><strong>${esc(s.cupom.preco)}</strong></div>` : ""}
       ${active ? couponChip(s) + `<span class="expiry ok">${esc(daysLeft(s))}</span>` + (s.cupom.nota ? `<span class="coupon-note">${esc(s.cupom.nota)}</span>` : "") : ""}
-      <div class="vols">${s.cursos.map((c, i) => `<a class="vol ${i === 0 ? "main" : ""}" href="${esc(courseUrl(s, c))}" target="_blank" rel="noopener" data-go="${esc(s.id)}" data-curso="${esc(c.rotulo)}"><span>${esc(c.rotulo)}</span><small>${fmt(c.questoes)} questões ↗</small></a>`).join("")}</div>`;
+      <div class="vols">${s.cursos.map((c, i) => `<a class="vol ${i === 0 ? "main" : ""}" href="${esc(courseUrl(s, c))}" target="_blank" rel="noopener" data-go="${esc(s.id)}" data-curso="${esc(c.rotulo)}"><span>${esc(c.rotulo)}</span><i class="vol-seta" aria-hidden="true">↗</i></a>`).join("")}</div>`;
   } else {
     box.innerHTML = `
       <span class="badge-hot soft"><i></i>${soon ? "Em breve na Udemy" : "Simulado sob demanda"}</span>

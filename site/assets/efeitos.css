@@ -232,3 +232,8 @@ html{overflow-x:clip}
   .btn-lg{max-width:100%}
   .btn-guide{white-space:normal;height:auto;min-height:var(--h);padding-block:12px;line-height:1.25;text-align:center}
 }
+
+/* ---------- Botões dos cards (Avise-me / Simulado): sempre numa linha ---------- */
+.vol > span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vol:not(:has(.vol-seta)){justify-content:center}
+.vol-seta{flex:none;font-style:normal;opacity:.85}
