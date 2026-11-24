@@ -1,0 +1,21 @@
+{
+  "voz": "pt-BR-MacerioMultilingualNeural",
+  "ritmo": "+14%",
+  "inicio": 0.35,
+  "falas": [
+    { "id": "gancho",   "cena": "gancho",  "pausa": 0.15, "texto": "Você ainda <emphasis level=\"strong\">não</emphasis> tem uma certificação Microsoft?" },
+    { "id": "atencao",  "cena": "gancho",  "pausa": 0.35, "texto": "Então presta atenção." },
+    { "id": "prompt",   "cena": "prompt",  "pausa": 0.30, "texto": "Se você quer começar em nuvem, inteligência artificial ou segurança, existe um caminho certo." },
+    { "id": "linha",    "cena": "mapa",    "pausa": 0.35, "texto": "A Linha 900. Seis certificações Fundamentals: a porta de entrada da Microsoft." },
+    { "id": "az900",    "cena": "selos",   "pausa": 0.10, "texto": "<sub alias=\"A Zê novecentos\">AZ-900</sub>, nuvem." },
+    { "id": "ai901",    "cena": "selos",   "pausa": 0.10, "texto": "<sub alias=\"A I novecentos e um\">AI-901</sub>, inteligência artificial." },
+    { "id": "dp900",    "cena": "selos",   "pausa": 0.10, "texto": "<sub alias=\"D P novecentos\">DP-900</sub>, dados." },
+    { "id": "sc900",    "cena": "selos",   "pausa": 0.10, "texto": "<sub alias=\"S C novecentos\">SC-900</sub>, segurança." },
+    { "id": "pl900",    "cena": "selos",   "pausa": 0.10, "texto": "<sub alias=\"P L novecentos\">PL-900</sub>, Power Platform." },
+    { "id": "ab900",    "cena": "selos",   "pausa": 0.40, "texto": "E <sub alias=\"A B novecentos\">AB-900</sub>, Copilot." },
+    { "id": "prova",    "cena": "prova",   "pausa": 0.35, "texto": "São mais de seiscentas questões no estilo real da prova, com a explicação de cada alternativa." },
+    { "id": "gratis",   "cena": "final",   "pausa": 0.20, "texto": "E o simulado da <sub alias=\"A I novecentos e um\">AI-901</sub> está grátis, por tempo limitado." },
+    { "id": "aqui",     "cena": "final",   "pausa": 0.15, "texto": "Sua próxima certificação Microsoft começa aqui." },
+    { "id": "bio",      "cena": "final",   "pausa": 1.20, "texto": "Link na bio." }
+  ]
+}

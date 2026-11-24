@@ -58,3 +58,23 @@ Depois, cadastre `https://raphaelbarreto.com.br/sitemap.xml` no Google Search Co
 python -m http.server 5173 --directory site
 ```
 e abra http://localhost:5173
+
+## Vídeo da Linha 900 (Reels)
+Arquivos em `video/`. O vídeo final fica em `video/saida/linha900.mp4` (1080×1920, 30 fps, com narração).
+
+| Arquivo | Para que serve |
+|---|---|
+| `roteiro.json` | texto de cada fala, voz (`pt-BR-MacerioMultilingualNeural`) e velocidade |
+| `narrar.py` | gera a narração no Azure e a linha do tempo de cada fala |
+| `cenas.html` + `cenas.js` | as animações (abra `cenas.html#play` para ver com áudio) |
+| `gravar.mjs` | grava os quadros no Edge e monta o MP4 com o FFmpeg |
+| `voz.py` | lista vozes e gera áudios avulsos |
+
+Para refazer depois de mudar o roteiro ou as cenas:
+```
+python video/narrar.py
+python -m http.server 5180
+node video/gravar.mjs
+```
+(o segundo comando fica rodando em outra janela enquanto o terceiro grava).
+A chave do Azure fica em `.env.local` (fora do GitHub). Para trocar a chave: `video/gravar-chave.ps1`.

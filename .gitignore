@@ -1,0 +1,24 @@
+# Chaves e segredos (nunca enviar ao GitHub)
+.env
+.env.*
+!.env.exemplo
+
+# Vídeo: dependências e arquivos temporários de renderização
+video/node_modules/
+video/quadros/
+video/audio/tmp/
+
+# Configuração local do Claude (servidores de teste)
+.claude/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testes de trechos do vídeo
+video/saida/trecho-*.mp4
+
+# Python
+__pycache__/
+*.pyc
