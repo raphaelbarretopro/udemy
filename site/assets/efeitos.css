@@ -255,3 +255,6 @@
   .result .rec .code{font-size:clamp(30px,9vw,40px)}
   .result .rec > div{flex:1 1 100%}
 }
+
+/* Texto só para leitores de tela e buscadores (ex.: código do exame dentro do H1) */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

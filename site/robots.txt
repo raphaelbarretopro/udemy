@@ -1,3 +1,9 @@
+# raphaelbarreto.com.br
 User-agent: *
 Allow: /
+
+# Parâmetros que só mudam a visão da mesma página
+Disallow: /*?metas=
+Disallow: /*?diag=
+
 Sitemap: https://raphaelbarreto.com.br/sitemap.xml

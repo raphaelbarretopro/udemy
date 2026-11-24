@@ -65,6 +65,21 @@ for cod, c in C.items():
         guia=f"https://learn.microsoft.com/pt-br/credentials/certifications/resources/study-guides/{cod.lower()}",
         selo=b["selo"],
     ))
+ANO = ATUALIZADO.split()[-1]
+
+# Simulados já lançados e perfis do autor, lidos de site/assets/dados.js
+_DADOS = open(os.path.join(SITE, "assets", "dados.js"), encoding="utf-8").read()
+COM_SIMULADO = {m.group(1).upper() for m in re.finditer(r'id: "([a-z]{2}-\d{3})", trilha: "microsoft".*?status: "([a-z-]+)"', _DADOS, re.S) if m.group(2) == "disponivel"}
+PERFIS = [u for u in re.findall(r'^\s*(?:instagram|linkedin|udemy|youtube): "(https?://[^"]+)"', _DADOS, re.M)]
+PESSOA = {"@type": "Person", "@id": f"{DOMINIO}/#raphael", "name": "Raphael Barreto", "url": f"{DOMINIO}/",
+          "image": f"{DOMINIO}/assets/raphael.webp", "jobTitle": "Microsoft Certified Educator"}
+if PERFIS: PESSOA["sameAs"] = PERFIS
+SITE_LD = {"@type": "WebSite", "@id": f"{DOMINIO}/#site", "name": "Raphael Barreto · Simulados Microsoft", "url": f"{DOMINIO}/",
+           "inLanguage": "pt-BR", "publisher": {"@id": f"{DOMINIO}/#raphael"}}
+
+def ld_script(*nos):
+    return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": list(nos)}, ensure_ascii=False) + "</script>"
+
 ORDEM_TRILHA = list(TRILHAS)
 CERTS.sort(key=lambda c: (ORDEM_TRILHA.index(c["trilha"]), ORDEM_NIVEL[c["nivel"]], c["codigo"]))
 POR = {c["codigo"]: c for c in CERTS}
@@ -78,6 +93,8 @@ def head(titulo, desc, url, extra="", imagem="/assets/og/certificacoes.jpg"):
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{e(titulo)}</title>
   <meta name="description" content="{e(desc)}">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="author" content="Raphael Barreto">
   <meta name="theme-color" content="#07080f">
   <meta property="og:type" content="article">
   <meta property="og:title" content="{e(titulo)}">
@@ -264,9 +281,13 @@ def pagina_guia():
     niveis = "".join(f'<div class="lvlcard glass reveal"><img class="selo-md" src="{SELO_NIVEL[n]}" alt="Selo {n}" loading="lazy" width="96" height="96">{badge_nivel(n)}<h3>{NIVEL_INFO[n][0]}</h3><p>{NIVEL_INFO[n][1]}</p><small class="muted">{sum(1 for c in CERTS if c["nivel"]==n)} certificações</small></div>' for n in NIVEIS)
     ld = {"@context": "https://schema.org", "@type": "ItemList", "name": "Certificações Microsoft",
           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{DOMINIO}/certificacoes/{c['id']}/", "name": f"{c['codigo']} {c['nome']}"} for i, c in enumerate(CERTS)]}
-    html = head("Todas as certificações Microsoft (novembro de 2026) · Guia completo em português",
+    ld["@id"] = f"{DOMINIO}/certificacoes/#lista"; del ld["@context"]
+    bc = {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Início", "item": DOMINIO + "/"},
+        {"@type": "ListItem", "position": 2, "name": "Certificações", "item": DOMINIO + "/certificacoes/"}]}
+    html = head(f"Certificações Microsoft {ANO}: as {total} explicadas em português",
                 f"Guia com as {total} certificações Microsoft ativas: Azure, IA, dados, segurança, Microsoft 365, Power Platform e Dynamics 365. Rotas, níveis, pesos da prova e quiz para escolher a sua.",
-                "/certificacoes/", f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')
+                "/certificacoes/", ld_script(PESSOA, SITE_LD, ld, bc))
     html += f"""
   <main id="topo">
     <section class="hero hero-guide">
@@ -417,16 +438,29 @@ def pagina_cert(c):
     toc = [("oque", "O que é"), ("resumo", "Resumo do exame"), ("publico", "Para quem é"), ("conteudo", "O que cai na prova"),
            ("preparar", "Como se preparar"), ("rota", "Onde ela se encaixa"), ("links", "Links oficiais"), ("comentarios", "Comentários")]
     tocs = "".join(f'<a href="#{a}">{b}</a>' for a, b in toc)
-    titulo = f"{c['codigo']}: {c['nome'].replace('Microsoft Certified: ', '').replace('Microsoft 365 Certified: ', '')} · Guia em português"
-    desc = f"Guia da certificação {c['codigo']} ({c['nomePt']}): o que cai na prova com os pesos oficiais, duração, idioma, pré-requisitos, rota de estudo e simulado."
-    ld = {"@context": "https://schema.org", "@type": "EducationalOccupationalCredential", "name": c["nome"], "credentialCategory": "certification",
-          "competencyRequired": [d["nome"] for d in c["dominios"]], "recognizedBy": {"@type": "Organization", "name": "Microsoft"}, "url": c["learn"]}
-    bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+    curto = c['nome'].replace('Microsoft Certified: ', '').replace('Microsoft 365 Certified: ', '')
+    url = f"{DOMINIO}/certificacoes/{c['id']}/"
+    if c["codigo"] in COM_SIMULADO:
+        titulo = f"{c['codigo']} {curto}: simulado e guia em português"
+        if len(titulo) > 62: titulo = f"{c['codigo']}: simulado e guia em português ({ANO})"
+        desc = f"Simulado da {c['codigo']} com explicação de cada alternativa e cupom na Udemy, mais o que cai na prova, pesos oficiais, duração e idioma."
+    else:
+        titulo = f"{c['codigo']} {curto}: o que cai na prova"
+        if len(titulo) > 62: titulo = f"{c['codigo']}: guia da prova em português ({ANO})"
+        desc = f"Guia da {c['codigo']} ({c['nomePt']}) em português: o que cai na prova com os pesos oficiais, duração, idioma, pré-requisitos e por onde começar a estudar."
+    cred = {"@type": "EducationalOccupationalCredential", "@id": url + "#credencial", "name": c["nome"], "alternateName": c["codigo"],
+            "credentialCategory": "certification", "educationalLevel": c["nivel"],
+            "competencyRequired": [d["nome"] for d in c["dominios"]], "recognizedBy": {"@type": "Organization", "name": "Microsoft"}, "url": c["learn"]}
+    art = {"@type": "Article", "@id": url + "#guia", "headline": titulo, "description": desc, "inLanguage": "pt-BR",
+           "dateModified": date.today().isoformat(), "author": {"@id": f"{DOMINIO}/#raphael"}, "publisher": {"@id": f"{DOMINIO}/#raphael"},
+           "isPartOf": {"@id": f"{DOMINIO}/#site"}, "image": f"{DOMINIO}/assets/og/{c['id']}.jpg", "about": {"@id": url + "#credencial"},
+           "mainEntityOfPage": url}
+    bc = {"@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Início", "item": DOMINIO + "/"},
         {"@type": "ListItem", "position": 2, "name": "Certificações", "item": DOMINIO + "/certificacoes/"},
         {"@type": "ListItem", "position": 3, "name": c["codigo"], "item": f"{DOMINIO}/certificacoes/{c['id']}/"}]}
     html = head(titulo, desc, f"/certificacoes/{c['id']}/",
-                f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script><script type="application/ld+json">{json.dumps(bc, ensure_ascii=False)}</script>',
+                ld_script(PESSOA, SITE_LD, art, cred, bc),
                 imagem=f"/assets/og/{c['id']}.jpg")
     html += f"""
   <main id="topo" data-cert="{c['id']}" class="cert-page t-{c['trilha']}">
@@ -435,8 +469,8 @@ def pagina_cert(c):
       <div class="cert-hero-grid">
         <div>
           <div class="tags reveal">{badge_nivel(c['nivel'])}<span class="tag">{ic} {e(tn)}</span>{badge_status(c)}{chip_pt(c)}</div>
-          <div class="cert-id reveal"><figure class="selo-hero"><img src="{c['selo']}" alt="Selo oficial {e(c['nome'])}" width="150" height="150"><figcaption>Selo oficial</figcaption></figure><div class="code-xl">{c['codigo']}</div></div>
-          <h1 class="reveal">{e(c['nomePt'])}</h1>
+          <div class="cert-id reveal"><figure class="selo-hero"><img src="{c['selo']}" alt="Selo oficial {e(c['nome'])}" width="150" height="150"><figcaption>Selo oficial</figcaption></figure><div class="code-xl" aria-hidden="true">{c['codigo']}</div></div>
+          <h1 class="reveal"><span class="sr-only">{c['codigo']}: </span>{e(c['nomePt'])}</h1>
           <p class="cname reveal">{e(c['nome'])}</p>
           <p class="lead reveal">{e(c['resumo'])}</p>
           <div class="ig reveal" data-social></div>
@@ -515,7 +549,7 @@ def grava(rel, conteudo):
 
 def atalho(destino):
     return f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Redirecionando…</title><link rel="canonical" href="{DOMINIO}{destino}"><meta name="robots" content="noindex">
+<title>Redirecionando…</title><link rel="canonical" href="{DOMINIO}{destino}">
 <script>location.replace("{destino}" + location.search + location.hash);</script>
 <meta http-equiv="refresh" content="0;url={destino}"></head><body><a href="{destino}">Continuar</a></body></html>
 """
@@ -532,5 +566,6 @@ if __name__ == "__main__":
     urls = ["/", "/certificacoes/"] + [f"/certificacoes/{c['id']}/" for c in CERTS]
     grava("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
           "".join(f"  <url><loc>{DOMINIO}{u}</loc><lastmod>{hoje}</lastmod></url>\n" for u in urls) + "</urlset>\n")
-    grava("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {DOMINIO}/sitemap.xml\n")
+    grava("robots.txt", "# raphaelbarreto.com.br\nUser-agent: *\nAllow: /\n\n# Parâmetros que só mudam a visão da mesma página\n"
+          f"Disallow: /*?metas=\nDisallow: /*?diag=\n\nSitemap: {DOMINIO}/sitemap.xml\n")
     print(f"OK: {len(CERTS)} páginas de certificação + guia + sitemap geradas em site/")
