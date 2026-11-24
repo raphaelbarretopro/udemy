@@ -1,0 +1,118 @@
+/* =====================================================================
+   INTERAÇÕES (estilo Instagram): barra, folha de compartilhar, comentários
+   ===================================================================== */
+
+/* ---------- Barra ---------- */
+.ig{margin:18px 0 4px}
+.ig-row{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);max-width:520px}
+.ig-b{position:relative;display:inline-flex;align-items:center;gap:7px;height:44px;padding:0 10px;border:0;border-radius:12px;background:none;
+  color:var(--ink);font:600 15px var(--body);cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .2s,transform .15s}
+.ig-b svg{width:26px;height:26px;flex:none;transition:transform .2s var(--ease),fill .2s,color .2s}
+.ig-b:hover{background:rgba(255,255,255,.07)}
+.ig-b:hover svg{transform:scale(1.08)}
+.ig-b:active svg{transform:scale(.88)}
+.ig-n:empty,.ig-b[hidden],[data-comentarios][hidden]{display:none}
+.ig-sp{flex:1}
+.ig-like.on svg{color:#ff3040}
+.ig-like.on svg{fill:#ff3040}
+.ig-save.on svg{fill:currentColor}
+.ig-b.pop svg{animation:igPop .45s var(--ease)}
+@keyframes igPop{0%{transform:scale(1)}30%{transform:scale(1.35)}55%{transform:scale(.9)}100%{transform:scale(1)}}
+.ig-b[data-dica]::after{content:attr(data-dica);position:absolute;left:50%;bottom:calc(100% + 8px);transform:translate(-50%,4px);white-space:nowrap;
+  padding:5px 9px;border-radius:8px;background:#fff;color:#0b0d18;font:600 12px var(--body);opacity:0;pointer-events:none;transition:.18s}
+@media (hover:hover){.ig-b[data-dica]:hover::after{opacity:1;transform:translate(-50%,0)}}
+
+/* Toque duplo no selo */
+.selo-hero.dbl-like{position:relative;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.big-heart{position:absolute;left:50%;top:44%;width:96px;height:96px;margin:-48px 0 0 -48px;color:#fff;opacity:0;pointer-events:none;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.5))}
+.big-heart svg{width:100%;height:100%;fill:#fff;stroke:none}
+.big-heart.go{animation:bigHeart .9s var(--ease) forwards}
+@keyframes bigHeart{0%{opacity:0;transform:scale(.2)}18%{opacity:1;transform:scale(1.15)}32%{transform:scale(.95)}45%{transform:scale(1)}75%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.1) translateY(-18px)}}
+
+/* ---------- Folha de compartilhar ---------- */
+.sh-lock,.sh-lock body{overflow:hidden}
+.sh{position:fixed;inset:0;z-index:320;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:rgba(4,5,12,0);backdrop-filter:blur(0);transition:background .25s,backdrop-filter .25s}
+.sh.open{background:rgba(4,5,12,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.sh-card{width:min(440px,100%);padding:18px 18px 20px;border-radius:24px;background:#12152a;border:1px solid var(--line);
+  box-shadow:0 30px 90px -20px rgba(0,0,0,.85);transform:translateY(24px) scale(.97);opacity:0;transition:transform .28s var(--ease),opacity .2s}
+.sh.open .sh-card{transform:none;opacity:1}
+.sh-grab{display:none}
+.sh-head{display:flex;align-items:center;gap:12px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.sh-head img{width:44px;height:44px;flex:none}
+.sh-head div{display:grid;min-width:0;flex:1}
+.sh-head b{font:700 16px var(--display)}
+.sh-head span{font-size:13px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sh-x{display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.07);color:var(--ink);cursor:pointer;flex:none}
+.sh-x svg{width:18px;height:18px}
+.sh-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 6px}
+.sh-op{display:grid;justify-items:center;gap:7px;padding:6px 2px;border:0;border-radius:14px;background:none;color:var(--ink2);font:500 12.5px var(--body);cursor:pointer}
+.sh-op:hover{background:rgba(255,255,255,.05);color:var(--ink)}
+.sh-ic{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:var(--c);color:#fff;transition:transform .2s var(--ease)}
+.sh-op:hover .sh-ic{transform:translateY(-3px)}
+.glyph{display:grid;place-items:center}
+.glyph svg{width:26px;height:26px}
+.glyph.txt{font:800 22px/1 var(--body)}
+.sh-link{display:flex;align-items:center;gap:8px;margin-top:16px;padding:6px 6px 6px 12px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid var(--line)}
+.sh-lic svg{width:18px;height:18px;color:var(--ink3);display:block}
+.sh-link input{flex:1;min-width:0;border:0;background:none;color:var(--ink2);font:400 13.5px var(--body);outline:none}
+@media (max-width:640px){
+  .sh{align-items:flex-end;padding:0}
+  .sh-card{width:100%;border-radius:24px 24px 0 0;padding-bottom:calc(20px + env(safe-area-inset-bottom));transform:translateY(100%)}
+  .sh-grab{display:block;width:40px;height:4px;margin:-6px auto 12px;border-radius:4px;background:rgba(255,255,255,.25)}
+}
+
+/* ---------- Comentários ---------- */
+#comentarios h2 .cm-total{font:500 .7em var(--body)}
+.cm-list{list-style:none;margin:20px 0;padding:0;display:grid;gap:18px}
+.cm{display:flex;gap:12px;align-items:flex-start}
+.cm.pend{opacity:.75}
+.cm-av{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:50%;object-fit:cover;object-position:50% 20%;
+  background:linear-gradient(135deg,hsl(var(--h,220) 70% 55%),hsl(calc(var(--h,220) + 50) 70% 45%));color:#fff;font:700 16px var(--display)}
+.cm-c{min-width:0;flex:1}
+.cm-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0}
+.cm-h b{font-size:14.5px}
+.cm-h time{font-size:12.5px;color:var(--ink3)}
+.cm-t{margin:3px 0 0;white-space:pre-line;overflow-wrap:anywhere;color:var(--ink)}
+.cm-pend{display:inline-block;margin-top:6px;font-size:12.5px;color:#fbbf24}
+.cm-rep{display:flex;gap:10px;margin-top:12px;padding:12px;border-radius:14px;background:rgba(79,140,255,.08);border:1px solid rgba(79,140,255,.22)}
+.cm-rep .cm-av{width:32px;height:32px}
+.cm-inst{padding:1px 8px;border-radius:999px;background:linear-gradient(90deg,var(--ms),var(--ms2));color:#fff;font:700 11px var(--body);letter-spacing:.04em;text-transform:uppercase}
+.cm-vazio{padding:16px;border-radius:14px;border:1px dashed var(--line);color:var(--ink2);text-align:center}
+.cm-form{display:flex;gap:12px;align-items:flex-start;padding-top:18px;border-top:1px solid var(--line)}
+.cm-fields{flex:1;min-width:0;display:grid;gap:10px}
+.cm-fields input,.cm-fields textarea{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:13px;border:1px solid var(--line);background:rgba(0,0,0,.3);
+  color:var(--ink);font:400 15px/1.5 var(--body);resize:vertical}
+.cm-fields input:focus,.cm-fields textarea:focus{outline:none;border-color:var(--ms);box-shadow:0 0 0 4px rgba(79,140,255,.2)}
+.cm-hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0}
+.cm-foot{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cm-foot small{flex:1;min-width:200px}
+.cm-cont{font-size:12.5px;color:var(--ink3)}
+@media (max-width:640px){.cm-form>.cm-av{display:none}.cm-foot .btn{width:100%}}
+
+/* ---------- Mini contadores nos cards ---------- */
+.ig-mini{display:inline-flex;align-items:center;gap:10px;margin-left:auto;font:600 12.5px var(--body);color:var(--ink2)}
+.ig-mini span{display:inline-flex;align-items:center;gap:4px}
+.ig-mini svg{width:15px;height:15px}
+.ig-mini span:first-child svg{color:#ff5a6a}
+.ig-mini .mt svg{fill:#fbbf24;color:#fbbf24}
+
+@media (prefers-reduced-motion:reduce){.ig-b.pop svg,.big-heart.go{animation:none}.sh,.sh-card{transition:none}}
+
+/* ---------- Barra compacta dentro dos cards (página inicial e catálogo) ---------- */
+.ig-card{margin:2px 0 0}
+.ig-card .ig-row{max-width:none;padding:2px 4px;gap:0;border-radius:12px;background:rgba(255,255,255,.03)}
+.ig-card .ig-b{height:38px;padding:0 8px;gap:5px;font-size:13.5px}
+.ig-card .ig-b svg{width:22px;height:22px}
+.card .ig-card{position:relative;z-index:2}
+/* Catálogo: o card é um link, então a barra fica numa caixa em volta dele */
+.ccard-box{position:relative;display:flex;flex-direction:column;transition:transform .25s var(--ease)}
+.ccard-box[hidden]{display:none}
+.ccard-box > .ccard{flex:1;padding-bottom:62px}
+.ccard-box > .ccard:hover{transform:none}
+.ccard-box:hover{transform:translateY(-4px)}
+.ccard-box > .ig-card{position:absolute;left:10px;right:10px;bottom:10px;margin:0;z-index:2}
+.ccard-box .ig-card .ig-b{height:34px;padding:0 6px}
+.ccard-box .ig-card .ig-b svg{width:20px;height:20px}

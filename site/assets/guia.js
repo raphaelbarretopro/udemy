@@ -18,7 +18,10 @@
   });
   $("#nSim").textContent = nSim;
 
-  const state = { trilha: new Set(), nivel: new Set(), q: "", pt: false, sim: false };
+  const state = { trilha: new Set(), nivel: new Set(), q: "", pt: false, sim: false, metas: false };
+  const minhasMetas = () => { try { return new Set(JSON.parse(localStorage.getItem("rb_metas")) || []); } catch (e) { return new Set(); } };
+  const metasSet = minhasMetas();
+  if (metasSet.size && $("#tglMetas")) { $("#tglMetas").hidden = false; $("#nMetas").textContent = `🔖 Minhas metas (${metasSet.size})`; }
   const norm = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
   function apply() {
@@ -29,8 +32,9 @@
         && (!state.nivel.size || state.nivel.has(a.dataset.nivel))
         && (!state.pt || a.dataset.pt === "1")
         && (!state.sim || a.dataset.sim === "1")
+        && (!state.metas || metasSet.has(a.dataset.cert))
         && (!q || norm(a.dataset.busca).includes(q) || norm(a.dataset.busca.replace(/-/g, "")).includes(q.replace(/-/g, "")));
-      a.hidden = !ok; if (ok) n++;
+      a.hidden = !ok; if (a.parentElement.classList.contains("ccard-box")) a.parentElement.hidden = !ok; if (ok) n++;
     });
     $$(".cgroup").forEach(g => { g.hidden = !$$(".ccard", g).some(a => !a.hidden); });
     $("#contagem").textContent = `${n} certificaç${n === 1 ? "ão" : "ões"}`;
@@ -45,9 +49,10 @@
   $("#busca").addEventListener("input", (e) => { state.q = e.target.value; apply(); });
   $("#soPt").addEventListener("change", (e) => { state.pt = e.target.checked; apply(); });
   $("#soSim").addEventListener("change", (e) => { state.sim = e.target.checked; apply(); });
+  if ($("#soMetas")) $("#soMetas").addEventListener("change", (e) => { state.metas = e.target.checked; apply(); });
   const limpar = () => {
-    state.trilha.clear(); state.nivel.clear(); state.q = ""; state.pt = state.sim = false;
-    $("#busca").value = ""; $("#soPt").checked = $("#soSim").checked = false;
+    state.trilha.clear(); state.nivel.clear(); state.q = ""; state.pt = state.sim = state.metas = false;
+    $("#busca").value = ""; $("#soPt").checked = $("#soSim").checked = false; if ($("#soMetas")) $("#soMetas").checked = false;
     $$(".fchip").forEach(b => { b.classList.remove("on"); b.setAttribute("aria-pressed", "false"); });
     apply();
   };
@@ -57,5 +62,6 @@
   // ?trilha=seguranca abre já filtrado (útil para stories)
   const p = new URLSearchParams(location.search);
   const t = p.get("trilha"); if (t) { const b = $(`.fchip[data-f="trilha"][data-v="${CSS.escape(t)}"]`); if (b) b.click(); }
+  if (p.get("metas") === "1" && $("#soMetas") && metasSet.size) { $("#soMetas").checked = true; state.metas = true; apply(); }
   const n = p.get("nivel"); if (n) { const b = $(`.fchip[data-f="nivel"][data-v="${CSS.escape(n)}"]`); if (b) b.click(); }
 })();

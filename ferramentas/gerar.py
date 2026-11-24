@@ -70,7 +70,7 @@ CERTS.sort(key=lambda c: (ORDEM_TRILHA.index(c["trilha"]), ORDEM_NIVEL[c["nivel"
 POR = {c["codigo"]: c for c in CERTS}
 
 # ---------------------------------------------------------------- partes comuns
-def head(titulo, desc, url, extra=""):
+def head(titulo, desc, url, extra="", imagem="/assets/og/certificacoes.jpg"):
     return f"""<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -84,6 +84,15 @@ def head(titulo, desc, url, extra=""):
   <meta property="og:description" content="{e(desc)}">
   <meta property="og:url" content="{DOMINIO}{url}">
   <meta property="og:locale" content="pt_BR">
+  <meta property="og:image" content="{DOMINIO}{imagem}">
+  <meta property="og:image:secure_url" content="{DOMINIO}{imagem}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="{e(titulo)}">
+  <meta property="og:site_name" content="Raphael Barreto · Simulados Microsoft">
+  <meta name="twitter:image" content="{DOMINIO}{imagem}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="{DOMINIO}{url}">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,6 +101,7 @@ def head(titulo, desc, url, extra=""):
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/guia.css">
   <link rel="stylesheet" href="/assets/efeitos.css">
+  <link rel="stylesheet" href="/assets/social.css">
   {extra}
 </head>
 <body>
@@ -166,12 +176,12 @@ def card_cert(c):
     t = TRILHAS[c["trilha"]][0]
     dur = f'{c["minutos"]} min' if c["minutos"] else ""
     busca = " ".join([c["codigo"], c["nomePt"], c["nome"], t, c["nivel"], c["resumo"]]).lower()
-    return f"""<a class="ccard {'aws' if False else ''}" href="/certificacoes/{c['id']}/" data-cert="{c['id']}" data-trilha="{c['trilha']}" data-nivel="{c['nivel']}" data-pt="{'1' if c['ptbr'] else '0'}" data-busca="{e(busca)}">
+    return f"""<div class="ccard-box"><a class="ccard {'aws' if False else ''}" href="/certificacoes/{c['id']}/" data-cert="{c['id']}" data-trilha="{c['trilha']}" data-nivel="{c['nivel']}" data-pt="{'1' if c['ptbr'] else '0'}" data-busca="{e(busca)}">
   <div class="ccard-top"><img class="selo-sm" src="{c['selo']}" alt="" loading="lazy" width="44" height="44"><span class="ccode">{c['codigo']}</span>{badge_nivel(c['nivel'])}</div>
   <h3>{e(c['nomePt'])}</h3>
   <p class="cname">{e(c['nome'])}</p>
   <div class="tags">{badge_status(c)}{'<span class="tag">⏱ ' + dur + '</span>' if dur else ''}{'<span class="tag">🇧🇷 PT-BR</span>' if c['ptbr'] else ''}<span class="sim-slot"></span></div>
-</a>"""
+</a><div class="ig ig-card" data-social="{c['id']}" data-nome="{e(c['nomePt'])}"></div></div>"""
 
 def link_cert(cod):
     c = POR.get(cod)
@@ -305,6 +315,7 @@ def pagina_guia():
         <div class="frow toggles">
           <label class="tgl"><input type="checkbox" id="soPt"><span></span>Prova em português</label>
           <label class="tgl"><input type="checkbox" id="soSim"><span></span>Com simulado na Udemy</label>
+          <label class="tgl" id="tglMetas" hidden><input type="checkbox" id="soMetas"><span></span><em id="nMetas" style="font-style:normal">Minhas metas</em></label>
           <button type="button" class="link-btn" id="limpar">Limpar filtros</button>
           <span class="count" id="contagem" aria-live="polite">{total} certificações</span>
         </div>
@@ -360,7 +371,7 @@ def pagina_guia():
     </section>
 {lead_form('Quer um simulado de outra certificação? <span class="grad">Me conta.</span>', 'Os próximos simulados serão lançados de acordo com a procura. Escolha a certificação e receba o cupom de estreia quando ela chegar à Udemy.', opcoes=True)}
   </main>"""
-    html += rodape(["vitrine.js", "quiz.js", "guia.js", "grafo.js"])
+    html += rodape(["vitrine.js", "quiz.js", "guia.js", "grafo.js", "social.js"])
     return html
 
 # ---------------------------------------------------------------- página de cada certificação
@@ -404,7 +415,7 @@ def pagina_cert(c):
     rel = [x for x in CERTS if x["trilha"] == c["trilha"] and x["codigo"] != c["codigo"]][:6]
     relacionadas = "".join(card_cert(x) for x in rel)
     toc = [("oque", "O que é"), ("resumo", "Resumo do exame"), ("publico", "Para quem é"), ("conteudo", "O que cai na prova"),
-           ("preparar", "Como se preparar"), ("rota", "Onde ela se encaixa"), ("links", "Links oficiais")]
+           ("preparar", "Como se preparar"), ("rota", "Onde ela se encaixa"), ("links", "Links oficiais"), ("comentarios", "Comentários")]
     tocs = "".join(f'<a href="#{a}">{b}</a>' for a, b in toc)
     titulo = f"{c['codigo']}: {c['nome'].replace('Microsoft Certified: ', '').replace('Microsoft 365 Certified: ', '')} · Guia em português"
     desc = f"Guia da certificação {c['codigo']} ({c['nomePt']}): o que cai na prova com os pesos oficiais, duração, idioma, pré-requisitos, rota de estudo e simulado."
@@ -415,7 +426,8 @@ def pagina_cert(c):
         {"@type": "ListItem", "position": 2, "name": "Certificações", "item": DOMINIO + "/certificacoes/"},
         {"@type": "ListItem", "position": 3, "name": c["codigo"], "item": f"{DOMINIO}/certificacoes/{c['id']}/"}]}
     html = head(titulo, desc, f"/certificacoes/{c['id']}/",
-                f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script><script type="application/ld+json">{json.dumps(bc, ensure_ascii=False)}</script>')
+                f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script><script type="application/ld+json">{json.dumps(bc, ensure_ascii=False)}</script>',
+                imagem=f"/assets/og/{c['id']}.jpg")
     html += f"""
   <main id="topo" data-cert="{c['id']}" class="cert-page t-{c['trilha']}">
     <section class="cert-hero">
@@ -427,6 +439,7 @@ def pagina_cert(c):
           <h1 class="reveal">{e(c['nomePt'])}</h1>
           <p class="cname reveal">{e(c['nome'])}</p>
           <p class="lead reveal">{e(c['resumo'])}</p>
+          <div class="ig reveal" data-social></div>
           {alerta}
         </div>
         <aside class="sim-box glass reveal" id="simBox" aria-live="polite"></aside>
@@ -480,6 +493,7 @@ def pagina_cert(c):
           </div>
           <p class="muted small">Guia independente, atualizado em {ATUALIZADO}. Datas, idiomas, preços e regras podem mudar: confirme no Microsoft Learn antes de se inscrever.</p>
         </section>
+        <section id="comentarios" class="block" data-comentarios hidden></section>
       </article>
     </div>
 
@@ -490,7 +504,7 @@ def pagina_cert(c):
     </section>
 {lead_form(f'Receba o cupom do simulado <span class="grad">{c["codigo"]}</span>.', f'Entre na lista para receber cupons e o aviso de lançamento do simulado {c["codigo"]} na Udemy.', codigo=c['codigo'])}
   </main>"""
-    html += rodape(["cert.js", "grafo.js"])
+    html += rodape(["cert.js", "grafo.js", "social.js"])
     return html
 
 # ---------------------------------------------------------------- escrita

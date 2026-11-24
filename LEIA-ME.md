@@ -102,3 +102,33 @@ visitante viu todos (fica guardado no navegador dele).
 
 Gestos no story: tocar à direita avança, à esquerda volta, segurar pausa, arrastar para baixo fecha.
 No computador: setas, espaço (pausa) e Esc (fecha).
+
+## Curtidas, comentários e compartilhamentos
+
+Cada página de certificação tem uma barra no estilo do Instagram: ♡ curtir, 💬 comentar, 🔁 recomendar no LinkedIn, ↗ compartilhar e 🔖 salvar em "Minhas metas".
+
+- **Compartilhar, recomendar e salvar** funcionam sem configuração. Os links levam `utm_source=<canal>` para você ver de onde veio cada visita no Analytics.
+- **Curtidas e comentários** usam o Supabase (gratuito). Até configurar, esses dois botões ficam escondidos.
+
+### Ativar o Supabase (uma vez)
+1. Crie uma conta em https://supabase.com e um projeto novo (região São Paulo).
+2. Abra **SQL Editor → New query**, cole o conteúdo de `supabase/social.sql` e clique em **Run**.
+3. Em **Project Settings → API**, copie a **Project URL** e a chave **publishable** (ou **anon**). Não use a chave *secret* / *service_role*.
+4. Cole as duas em `site/assets/dados.js`, em `window.SOCIAL`, e publique.
+
+A chave publishable é pública de propósito: pelas regras do `social.sql`, ela só permite curtir, comentar e compartilhar.
+
+### Moderar comentários
+Os comentários chegam como pendentes. No Supabase, abra **Table Editor → comentarios**:
+- marque **aprovado** para publicar;
+- escreva na coluna **resposta** para responder (aparece com o selo "Instrutor");
+- apague a linha para remover.
+
+### Manter o projeto ativo
+O plano gratuito pausa o projeto depois de 7 dias sem uso. A tarefa `.github/workflows/supabase-ativo.yml` consulta o banco duas vezes por semana para evitar isso.
+
+### Imagens de prévia
+Quando alguém compartilha uma página, aparece a imagem de `site/assets/og/<código>.jpg`. Para gerar de novo, depois de `python ferramentas/gerar.py`:
+
+    node ferramentas/og.mjs          # todas
+    node ferramentas/og.mjs az-104   # só uma

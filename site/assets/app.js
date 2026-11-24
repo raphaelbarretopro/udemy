@@ -8,6 +8,7 @@
   function card(s) {
     const isAws = s.trilha === "aws";
     const guia = isAws ? "" : `<a class="guide-link" href="/certificacoes/${esc(s.id)}/">Ver o guia da ${esc(s.codigo)} →</a>`;
+    const barra = isAws ? "" : `<div class="ig ig-card" data-social="${esc(s.id)}" data-nome="${esc(s.nome)}"></div>`;
     if (s.status !== "disponivel") {
       return `<article class="card soon ${isAws ? "aws" : ""} reveal" id="${esc(s.id)}" data-tilt>
         <div class="card-top"><span class="code">${esc(s.codigo)}</span><span class="tag soon">Em breve na Udemy</span></div>
@@ -15,6 +16,7 @@
         <div class="tags"><span class="tag">${esc(s.nivel)}</span></div>
         ${guia}
         <div class="vols"><a class="vol main" href="#alerta" data-notify="${esc(s.codigo)}">🔔 Avise-me no lançamento <small>cupom de estreia</small></a></div>
+        ${barra}
       </article>`;
     }
     const active = couponActive(s);
@@ -39,6 +41,7 @@
       ${active ? couponChip(s) + `<span class="expiry ok">${esc(daysLeft(s))}</span>` + (s.cupom.nota ? `<span class="coupon-note">${esc(s.cupom.nota)}</span>` : "") : ""}
       ${guia}
       <div class="vols">${vols}</div>
+      ${barra}
     </article>`;
   }
   ["microsoft", "aws"].forEach(t => {

@@ -207,3 +207,18 @@ window.STORIES = [
     botao: { texto: "Simulado AI-901 grátis", simulado: "ai-901" }
   }
 ];
+
+/* =====================================================================
+   CURTIDAS E COMENTÁRIOS (páginas de certificação)
+   ---------------------------------------------------------------------
+   Preencha com os dados do seu projeto no Supabase
+   (Project Settings > API: "Project URL" e a chave "publishable"/"anon").
+   Essa chave é pública de propósito: ela só permite curtir, comentar e
+   compartilhar, pelas regras do arquivo supabase/social.sql.
+   Vazio = compartilhar e salvar continuam funcionando; curtidas e
+   comentários ficam escondidos.
+   ===================================================================== */
+window.SOCIAL = {
+  supabaseUrl: "",      // ex.: "https://abcdxyz.supabase.co"
+  chavePublica: ""      // ex.: "sb_publishable_..." ou a chave "anon"
+};

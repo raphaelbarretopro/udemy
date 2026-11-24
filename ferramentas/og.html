@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1200px;height:630px;overflow:hidden;background:#07080f}
+  #card{position:relative;width:1200px;height:630px;overflow:hidden;color:#eef1ff;font-family:Inter,system-ui,sans-serif;
+    background:radial-gradient(700px 500px at 0% 0%,rgba(79,140,255,.45),transparent 70%),
+               radial-gradient(600px 500px at 100% 100%,rgba(124,92,255,.45),transparent 70%),#07080f}
+  .grid{position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:48px 48px;
+    -webkit-mask-image:radial-gradient(circle at 60% 50%,#000,transparent 75%)}
+  .selo{position:absolute;left:70px;top:50%;width:380px;height:380px;transform:translateY(-50%);filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
+  .txt{position:absolute;left:500px;right:64px;top:80px;bottom:70px;display:flex;flex-direction:column}
+  .chips{display:flex;gap:10px;flex-wrap:wrap}
+  .chip{padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);font:600 20px Inter}
+  .chip.hot{background:linear-gradient(90deg,#4f8cff,#7c5cff);border:0}
+  .code{margin-top:22px;font:700 132px/0.95 "Space Grotesk";letter-spacing:-.03em;
+    background:linear-gradient(90deg,#fff,#b8c8ff);-webkit-background-clip:text;color:transparent}
+  .nome{margin-top:16px;font:700 40px/1.15 "Space Grotesk";letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .pe{margin-top:auto;display:flex;align-items:center;gap:14px;font:600 22px Inter;color:#a9b0cc}
+  .pe img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:2px solid rgba(255,255,255,.5)}
+  .pe b{color:#fff}
+  /* variante do catálogo */
+  .mosaico{position:absolute;left:40px;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:repeat(3,140px);gap:10px}
+  .mosaico img{width:140px;height:140px;filter:drop-shadow(0 16px 30px rgba(0,0,0,.55))}
+</style>
+</head>
+<body>
+<div id="card"></div>
+<script>
+  window.render = (d) => {
+    const c = document.getElementById("card");
+    const pe = `<div class="pe">${d.foto ? `<img src="${d.foto}" alt="">` : ""}<span><b>raphaelbarreto.com.br</b> · guia + simulado</span></div>`;
+    if (d.tipo === "catalogo") {
+      c.innerHTML = `<div class="grid"></div><div class="mosaico">${d.selos.map(s => `<img src="${s}">`).join("")}</div>
+        <div class="txt"><div class="chips"><span class="chip hot">Atualizado em ${d.atualizado}</span></div>
+        <div class="code" style="font-size:150px">${d.total}</div>
+        <div class="nome" style="font-size:46px">certificações Microsoft explicadas em português</div>${pe}</div>`;
+    } else {
+      c.innerHTML = `<div class="grid"></div><img class="selo" src="${d.selo}" alt="">
+        <div class="txt"><div class="chips"><span class="chip hot">${d.nivel}</span><span class="chip">${d.trilha}</span></div>
+        <div class="code">${d.codigo}</div><div class="nome">${d.nomePt}</div>${pe}</div>`;
+    }
+    return Promise.all([...c.querySelectorAll("img")].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))).then(() => document.fonts.ready);
+  };
+</script>
+</body>
+</html>
