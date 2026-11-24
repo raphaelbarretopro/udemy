@@ -1,0 +1,1068 @@
+{
+ "MS-102": {
+  "slug": "m365-administrator-expert",
+  "nome": "Microsoft 365 Certified: Administrator Expert",
+  "tipo": "Role-based",
+  "minutos": null,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "25–30%",
+   "30–35%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Deploy and manage a Microsoft 365 tenant",
+   "Implement and manage Microsoft Entra identity and access",
+   "Manage security and threats by using Microsoft Defender XDR",
+   "Manage compliance by using Microsoft Purview"
+  ],
+  "guia_atualizado": "April 28, 2026",
+  "selo": "/assets/selos/microsoft-certified-expert-badge.svg"
+ },
+ "MS-721": {
+  "slug": "m365-collaboration-communications-systems-engineer",
+  "nome": "Microsoft 365 Certified: Collaboration Communications Systems Engineer Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "20–25%",
+   "15–20%",
+   "30–35%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Plan and design collaboration communications systems",
+   "Configure and manage Teams meetings, webinars, and town halls",
+   "Configure and manage Teams Phone",
+   "Configure and manage Teams Rooms and devices"
+  ],
+  "guia_atualizado": "October 29, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AB-900": {
+  "slug": "copilot-and-agent-administration-fundamentals",
+  "nome": "Microsoft 365 Certified: Copilot and Agent Administration Fundamentals",
+  "tipo": "Fundamentals",
+  "minutos": 45,
+  "ptbr": true,
+  "pesos": [
+   "30–35%",
+   "35–40%",
+   "25–30%"
+  ],
+  "dominios_en": [
+   "Identify the core features and objects of Microsoft 365 services",
+   "Understand data protection and governance tasks for Microsoft 365 and Copilot",
+   "Perform basic administrative tasks for Copilot and agents"
+  ],
+  "guia_atualizado": "October 14, 2026",
+  "selo": "/assets/selos/microsoft-certified-fundamentals-badge.svg"
+ },
+ "MD-102": {
+  "slug": "modern-desktop",
+  "nome": "Microsoft 365 Certified: Endpoint Administrator Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "20–25%",
+   "25–30%",
+   "15–20%",
+   "15–20%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Prepare infrastructure for devices",
+   "Manage and maintain devices",
+   "Protect devices",
+   "Manage and secure applications",
+   "Optimize endpoint operations by using automation, monitoring, and reporting"
+  ],
+  "guia_atualizado": "October 27, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AB-650": {
+  "slug": "ai-services-administrator-associate",
+  "nome": "Microsoft 365 Certified: Microsoft 365 and AI Services Administrator Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": false,
+  "pesos": [
+   "20–25%",
+   "40–45%",
+   "35–40%"
+  ],
+  "dominios_en": [
+   "Configure and manage Microsoft 365 tenants and workloads",
+   "Govern and secure Microsoft 365 tenants and workloads",
+   "Manage and secure AI services in Microsoft 365"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "MS-700": {
+  "slug": "m365-teams-administrator-associate",
+  "nome": "Microsoft 365 Certified: Teams Administrator Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "40–45%",
+   "20–25%",
+   "15–20%",
+   "15–20%"
+  ],
+  "dominios_en": [
+   "Configure and manage a Teams environment",
+   "Manage teams, channels, chats, and apps",
+   "Manage meetings and calling",
+   "Monitor, report on, and troubleshoot Teams"
+  ],
+  "guia_atualizado": "October 27, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AB-620": {
+  "slug": "ai-agent-builder-associate",
+  "nome": "Microsoft Certified: AI Agent Builder Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": true,
+  "pesos": [
+   "50–55%",
+   "20–25%",
+   "25–30%"
+  ],
+  "dominios_en": [
+   "Plan and configure agent solutions",
+   "Integrate and extend agents in Copilot Studio",
+   "Test and manage agents"
+  ],
+  "guia_atualizado": "December 18, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AB-730": {
+  "slug": "ai-business-professional",
+  "nome": "Microsoft Certified: AI Business Professional",
+  "tipo": "Business",
+  "minutos": 45,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "20–25%",
+   "20–25%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Understand generative AI fundamentals",
+   "Manage prompts and chats by using Microsoft 365 Copilot",
+   "Manage business content and collaboration by using Microsoft 365 Copilot",
+   "Drive business outcomes by using agents"
+  ],
+  "guia_atualizado": "October 20, 2026",
+  "selo": "/assets/selos/ai-business-professional.svg"
+ },
+ "AB-731": {
+  "slug": "ai-transformation-leader",
+  "nome": "Microsoft Certified: AI Transformation Leader",
+  "tipo": "Business",
+  "minutos": 45,
+  "ptbr": true,
+  "pesos": [
+   "35–40%",
+   "35–40%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Identify the business value of generative AI solutions",
+   "Identify benefits, capabilities, and opportunities for Microsoft’s AI apps and services",
+   "Identify an implementation and adoption strategy for Microsoft’s AI apps and services"
+  ],
+  "guia_atualizado": "January 11, 2027",
+  "selo": "/assets/selos/ai-transformation-leader.svg"
+ },
+ "AB-100": {
+  "slug": "agentic-ai-business-solutions-architect",
+  "nome": "Microsoft Certified: Agentic AI Business Solutions Architect Expert",
+  "tipo": "Role-based",
+  "minutos": null,
+  "ptbr": true,
+  "pesos": [
+   "35–40%",
+   "30–35%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Plan AI-powered business solutions",
+   "Design AI-powered business solutions",
+   "Deploy AI-powered business solutions"
+  ],
+  "guia_atualizado": "November 16, 2026",
+  "selo": "/assets/selos/microsoft-certified-expert-badge.svg"
+ },
+ "AZ-401": {
+  "slug": "agentic-devops-engineer-expert",
+  "nome": "Microsoft Certified: Agentic DevOps Engineer Expert",
+  "tipo": "Role-based",
+  "minutos": null,
+  "ptbr": false,
+  "pesos": [
+   "15–20%",
+   "10–15%",
+   "35–40%",
+   "15–20%",
+   "15–20%"
+  ],
+  "dominios_en": [
+   "Design and implement processes and communications",
+   "Design and implement a source control strategy",
+   "Design and implement build and release pipelines",
+   "Design and implement a security and compliance plan",
+   "Implement an instrumentation strategy"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-expert-badge.svg"
+ },
+ "AI-103": {
+  "slug": "azure-ai-apps-and-agents-developer-associate",
+  "nome": "Microsoft Certified: Azure AI Apps and Agents Developer Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "30–35%",
+   "10–15%",
+   "10–15%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Plan and manage an Azure AI solution",
+   "Implement generative AI and agentic solutions",
+   "Implement computer vision solutions",
+   "Implement text analysis solutions",
+   "Implement information extraction solutions"
+  ],
+  "guia_atualizado": "April 16, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AI-200": {
+  "slug": "azure-ai-cloud-developer-associate",
+  "nome": "Microsoft Certified: Azure AI Cloud Developer Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": true,
+  "pesos": [
+   "20–25%",
+   "25–30%",
+   "20–25%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Develop containerized solutions on Azure",
+   "Develop AI solutions by using Azure data management services",
+   "Connect to and consume Azure services",
+   "Secure, monitor, troubleshoot Azure solutions"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AI-901": {
+  "slug": "azure-ai-fundamentals",
+  "nome": "Microsoft Certified: Azure AI Fundamentals",
+  "tipo": "Fundamentals",
+  "minutos": null,
+  "ptbr": true,
+  "pesos": [
+   "40–45%",
+   "55–60%"
+  ],
+  "dominios_en": [
+   "Identify AI concepts and capabilities",
+   "Implement AI solutions by using Microsoft Foundry"
+  ],
+  "guia_atualizado": "April 15, 2026",
+  "selo": "/assets/selos/microsoft-certified-fundamentals-badge.svg"
+ },
+ "AZ-104": {
+  "slug": "azure-administrator",
+  "nome": "Microsoft Certified: Azure Administrator Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "20–25%",
+   "15–20%",
+   "20–25%",
+   "15–20%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Manage Azure identities and governance",
+   "Implement and manage storage",
+   "Deploy and manage Azure compute resources",
+   "Implement and manage virtual networking",
+   "Monitor and maintain Azure resources"
+  ],
+  "guia_atualizado": "April 17, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "DP-420": {
+  "slug": "azure-cosmos-db-developer-specialty",
+  "nome": "Microsoft Certified: Azure Cosmos DB AI Developer Associate",
+  "tipo": "Specialty",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "40–45%",
+   "30–35%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Design and develop database solutions",
+   "Secure, optimize, and deploy database solutions",
+   "Implement AI and Analytics capabilities in database solutions"
+  ],
+  "guia_atualizado": "October 6, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "DP-900": {
+  "slug": "azure-data-fundamentals",
+  "nome": "Microsoft Certified: Azure Data Fundamentals",
+  "tipo": "Fundamentals",
+  "minutos": 45,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "20–25%",
+   "15–20%",
+   "25–30%"
+  ],
+  "dominios_en": [
+   "Describe core data concepts",
+   "Identify considerations for relational data on Azure",
+   "Describe considerations for working with non-relational data on Azure",
+   "Describe an analytics workload on Azure"
+  ],
+  "guia_atualizado": "July 21, 2026",
+  "selo": "/assets/selos/microsoft-certified-fundamentals-badge.svg"
+ },
+ "DP-300": {
+  "slug": "azure-database-administrator-associate",
+  "nome": "Microsoft Certified: Azure Database Administrator Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "15–20%",
+   "20–25%",
+   "20–25%",
+   "15–20%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Plan and implement data platform resources",
+   "Implement a secure environment",
+   "Monitor, configure, and optimize database resources",
+   "Configure and manage automation of tasks",
+   "Plan and configure a high availability and disaster recovery"
+  ],
+  "guia_atualizado": "October 27, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "DP-750": {
+  "slug": "implementing-data-engineering-solutions-using-azure-databricks",
+  "nome": "Microsoft Certified: Azure Databricks Data Engineer Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": true,
+  "pesos": [
+   "15–20%",
+   "15–20%",
+   "30–35%",
+   "30–35%"
+  ],
+  "dominios_en": [
+   "Set up and configure an Azure Databricks environment",
+   "Secure and govern Unity Catalog objects",
+   "Prepare and process data",
+   "Deploy and maintain data pipelines and workloads"
+  ],
+  "guia_atualizado": "March 11, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AZ-900": {
+  "slug": "azure-fundamentals",
+  "nome": "Microsoft Certified: Azure Fundamentals",
+  "tipo": "Fundamentals",
+  "minutos": 45,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "35–40%",
+   "30–35%"
+  ],
+  "dominios_en": [
+   "Describe cloud concepts",
+   "Describe Azure architecture and services",
+   "Describe Azure management and governance"
+  ],
+  "guia_atualizado": "July 20, 2026",
+  "selo": "/assets/selos/microsoft-certified-fundamentals-badge.svg"
+ },
+ "AZ-700": {
+  "slug": "azure-network-engineer-associate",
+  "nome": "Microsoft Certified: Azure Network Engineer Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "20–25%",
+   "15–20%",
+   "10–15%",
+   "15–20%"
+  ],
+  "dominios_en": [
+   "Design and implement core networking infrastructure",
+   "Design, implement, and manage connectivity services",
+   "Design and implement application delivery services",
+   "Design and implement private access to Azure services",
+   "Design and implement Azure network security services"
+  ],
+  "guia_atualizado": "July 27, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AZ-305": {
+  "slug": "azure-solutions-architect",
+  "nome": "Microsoft Certified: Azure Solutions Architect Expert",
+  "tipo": "Role-based",
+  "minutos": null,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "20–25%",
+   "15–20%",
+   "30–35%"
+  ],
+  "dominios_en": [
+   "Design identity, governance, and monitoring solutions",
+   "Design data storage solutions",
+   "Design business continuity solutions",
+   "Design infrastructure solutions"
+  ],
+  "guia_atualizado": "April 17, 2026",
+  "selo": "/assets/selos/microsoft-certified-expert-badge.svg"
+ },
+ "AZ-140": {
+  "slug": "azure-virtual-desktop-specialty",
+  "nome": "Microsoft Certified: Azure Virtual Desktop Specialty",
+  "tipo": "Specialty",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "40–45%",
+   "15–20%",
+   "20–25%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Plan and implement an Azure Virtual Desktop infrastructure",
+   "Plan and implement identity and security",
+   "Plan and implement user environments and apps",
+   "Monitor and maintain an Azure Virtual Desktop infrastructure"
+  ],
+  "guia_atualizado": "July 20, 2026",
+  "selo": "/assets/selos/microsoft-certified-specialty-badge.svg"
+ },
+ "AZ-120": {
+  "slug": "azure-for-sap-workloads-specialty",
+  "nome": "Microsoft Certified: Azure for SAP Workloads Specialty",
+  "tipo": "Specialty",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "25–30%",
+   "20–25%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Migrate SAP workloads to Azure",
+   "Design and implement an infrastructure to support SAP workloads on Azure",
+   "Design and implement high availability and disaster recovery",
+   "Maintain SAP workloads on Azure"
+  ],
+  "guia_atualizado": "April 17, 2026",
+  "selo": "/assets/selos/microsoft-certified-specialty-badge.svg"
+ },
+ "SC-500": {
+  "slug": "cloud-and-ai-security-engineer-associate",
+  "nome": "Microsoft Certified: Cloud and AI Security Engineer Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": true,
+  "pesos": [
+   "20–25%",
+   "25–30%",
+   "20–25%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Manage identity, access, and governance",
+   "Secure storage, databases, and networking",
+   "Secure compute",
+   "Manage and monitor security posture"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "SC-100": {
+  "slug": "cybersecurity-architect-expert",
+  "nome": "Microsoft Certified: Cybersecurity Architect Expert",
+  "tipo": "Role-based",
+  "minutos": null,
+  "ptbr": true,
+  "pesos": [
+   "20–25%",
+   "25–30%",
+   "25–30%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Design solutions that align with security best practices and priorities",
+   "Design security operations, identity, and compliance capabilities",
+   "Design security solutions for infrastructure",
+   "Design security solutions for applications and data"
+  ],
+  "guia_atualizado": "October 21, 2026",
+  "selo": "/assets/selos/microsoft-certified-expert-badge.svg"
+ },
+ "AZ-400": {
+  "slug": "devops-engineer",
+  "nome": "Microsoft Certified: DevOps Engineer Expert",
+  "tipo": "Role-based",
+  "minutos": null,
+  "ptbr": true,
+  "pesos": [
+   "10–15%",
+   "10–15%",
+   "50–55%",
+   "10–15%",
+   "5–10%"
+  ],
+  "dominios_en": [
+   "Design and implement processes and communications",
+   "Design and implement a source control strategy",
+   "Design and implement build and release pipelines",
+   "Develop a security and compliance plan",
+   "Implement an instrumentation strategy"
+  ],
+  "guia_atualizado": "July 27, 2026",
+  "selo": "/assets/selos/microsoft-certified-expert-badge.svg"
+ },
+ "MB-820": {
+  "slug": "d365-business-central-developer-associate",
+  "nome": "Microsoft Certified: Dynamics 365 Business Central Developer Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "5–10%",
+   "10–15%",
+   "30–35%",
+   "15–20%",
+   "10–15%",
+   "15–20%"
+  ],
+  "dominios_en": [
+   "Design Business Central solutions",
+   "Install, develop, and deploy for Business Central",
+   "Develop objects by using AL",
+   "Develop user experiences and logic by using AL",
+   "Test and monitor AL code",
+   "Integrate Business Central with other applications"
+  ],
+  "guia_atualizado": "November 20, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "MB-800": {
+  "slug": "d365-business-central-functional-consultant-associate",
+  "nome": "Microsoft Certified: Dynamics 365 Business Central Functional Consultant Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "20–25%",
+   "30–35%",
+   "10–15%",
+   "30–35%"
+  ],
+  "dominios_en": [
+   "Set up Business Central",
+   "Configure financials",
+   "Configure sales and purchasing",
+   "Perform Business Central operations"
+  ],
+  "guia_atualizado": "December 18, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AB-250": {
+  "slug": "d365-contact-center-ai-engineer-associate",
+  "nome": "Microsoft Certified: Dynamics 365 Contact Center AI Engineer Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": true,
+  "pesos": [
+   "15–20%",
+   "30–35%",
+   "10–15%",
+   "10–15%",
+   "15–20%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Deploy Dynamics 365 Contact Center",
+   "Implement channels",
+   "Configure agents and AI capabilities",
+   "Configure work distribution",
+   "Configure the Dynamics 365 Contact Center representative experience",
+   "Manage analytics for the Dynamics 365 Contact Center"
+  ],
+  "guia_atualizado": "December 18, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "MB-230": {
+  "slug": "d365-functional-consultant-customer-service-v3",
+  "nome": "Microsoft Certified: Dynamics 365 Customer Service Functional Consultant Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "51–55%",
+   "25–30%",
+   "15–20%"
+  ],
+  "dominios_en": [
+   "Manage cases in Customer Service",
+   "Configure representative experience and routing",
+   "Extend Customer Service"
+  ],
+  "guia_atualizado": "March 11, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "MB-310": {
+  "slug": "d365-functional-consultant-financials",
+  "nome": "Microsoft Certified: Dynamics 365 Finance Functional Consultant Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": false,
+  "pesos": [
+   "40–45%",
+   "15–20%",
+   "10–15%",
+   "10–15%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Implement financial management",
+   "Implement accounts receivable, credit, collections, and subscription billing",
+   "Implement and manage accounts payable and expenses",
+   "Manage budgeting",
+   "Manage fixed assets"
+  ],
+  "guia_atualizado": "July 25, 2025",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AB-210": {
+  "slug": "d365-sales-ai-consultant-associate",
+  "nome": "Microsoft Certified: Dynamics 365 Sales AI Consultant Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": true,
+  "pesos": [
+   "15–20%",
+   "25–30%",
+   "15–20%",
+   "15–20%",
+   "15–20%"
+  ],
+  "dominios_en": [
+   "Configure Dynamics 365 Sales core features for AI",
+   "Optimize AI-driven sales",
+   "Qualify and prioritize leads by using AI",
+   "Develop deals by using intelligent opportunity research",
+   "Extend and enhance Sales"
+  ],
+  "guia_atualizado": "December 18, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "MB-330": {
+  "slug": "d365-functional-consultant-supply-chain-management",
+  "nome": "Microsoft Certified: Dynamics 365 Supply Chain Management Functional Consultant Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": false,
+  "pesos": [
+   "25–30%",
+   "20–25%",
+   "15–20%",
+   "20–25%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Implement product information management",
+   "Implement inventory and asset management",
+   "Implement and manage supply chain processes",
+   "Implement warehouse management and transportation management",
+   "Implement master planning"
+  ],
+  "guia_atualizado": "October 21, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "MB-500": {
+  "slug": "d365-finance-and-operations-apps-developer-associate",
+  "nome": "Microsoft Certified: Dynamics 365: Finance and Operations Apps Developer Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": false,
+  "pesos": [
+   "10–15%",
+   "10–15%",
+   "10–15%",
+   "20–25%",
+   "5–10%",
+   "15–20%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Plan the architecture and solution design",
+   "Apply developer tools",
+   "Design and develop AOT elements",
+   "Develop and test code",
+   "Implement reporting",
+   "Integrate and manage data solutions",
+   "Implement security and optimize performance"
+  ],
+  "guia_atualizado": "December 18, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "DP-600": {
+  "slug": "fabric-analytics-engineer-associate",
+  "nome": "Microsoft Certified: Fabric Analytics Engineer Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "45–50%",
+   "25–30%"
+  ],
+  "dominios_en": [
+   "Maintain a data analytics solution",
+   "Prepare data",
+   "Implement and manage semantic models"
+  ],
+  "guia_atualizado": "October 19, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "DP-700": {
+  "slug": "fabric-data-engineer-associate",
+  "nome": "Microsoft Certified: Fabric Data Engineer Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "30–35%",
+   "30–35%",
+   "30–35%"
+  ],
+  "dominios_en": [
+   "Implement and manage an analytics solution",
+   "Ingest and transform data",
+   "Monitor and optimize an analytics solution"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "SC-300": {
+  "slug": "identity-and-access-administrator",
+  "nome": "Microsoft Certified: Identity and Access Administrator Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "20–25%",
+   "25–30%",
+   "20–25%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Implement and manage user identities",
+   "Implement authentication and access management",
+   "Plan and implement workload identities",
+   "Plan and automate identity governance"
+  ],
+  "guia_atualizado": "October 28, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "SC-401": {
+  "slug": "information-security-administrator",
+  "nome": "Microsoft Certified: Information Security Administrator Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "30–35%",
+   "30–35%",
+   "30–35%"
+  ],
+  "dominios_en": [
+   "Implement information protection",
+   "Implement data loss prevention and retention",
+   "Manage risks, alerts, and activities"
+  ],
+  "guia_atualizado": "October 28, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AB-410": {
+  "slug": "intelligent-applications-builder-associate",
+  "nome": "Microsoft Certified: Intelligent Applications Builder Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "25–30%",
+   "40–45%"
+  ],
+  "dominios_en": [
+   "Create a foundation for intelligent applications",
+   "Create intelligent applications",
+   "Build business application logic and automation"
+  ],
+  "guia_atualizado": "December 18, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AI-300": {
+  "slug": "operationalizing-machine-learning-and-generative-ai-solutions",
+  "nome": "Microsoft Certified: Machine Learning Operations Engineer Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": false,
+  "pesos": [
+   "15–20%",
+   "25–30%",
+   "20–25%",
+   "10–15%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Design and implement an MLOps infrastructure",
+   "Implement machine learning model lifecycle and operations",
+   "Design and implement a GenAIOps infrastructure",
+   "Implement generative AI quality assurance and observability",
+   "Optimize generative AI systems and model performance"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AI-500": {
+  "slug": "multi-agent-ai-solutions-expert",
+  "nome": "Microsoft Certified: Multi-Agent AI Solutions Expert",
+  "tipo": "Role-based",
+  "minutos": null,
+  "ptbr": false,
+  "pesos": [
+   "15–20%",
+   "30–35%",
+   "20–25%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Architect multi-agent solutions",
+   "Develop multi-agent solutions in Azure",
+   "Evaluate, optimize, and monitor multi-agent solutions",
+   "Secure, govern, and deploy multi-agent solutions"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-expert-badge.svg"
+ },
+ "PL-300": {
+  "slug": "data-analyst-associate",
+  "nome": "Microsoft Certified: Power BI Data Analyst Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "25–30%",
+   "25–30%",
+   "25–30%",
+   "15–20%"
+  ],
+  "dominios_en": [
+   "Prepare the data",
+   "Model the data",
+   "Visualize and analyze the data",
+   "Manage and secure Power BI"
+  ],
+  "guia_atualizado": "April 20, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AB-400": {
+  "slug": "power-platform-developer-associate",
+  "nome": "Microsoft Certified: Power Platform Developer Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": false,
+  "pesos": [
+   "15–20%",
+   "25–30%",
+   "35–40%",
+   "10–15%"
+  ],
+  "dominios_en": [
+   "Build Microsoft Power Platform solutions",
+   "Extend the user experience",
+   "Extend Microsoft Power Platform",
+   "Develop integrations"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "PL-900": {
+  "slug": "power-platform-fundamentals",
+  "nome": "Microsoft Certified: Power Platform Fundamentals",
+  "tipo": "Fundamentals",
+  "minutos": 45,
+  "ptbr": true,
+  "pesos": [
+   "5–10%",
+   "20–25%",
+   "20–25%",
+   "20–25%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Describe the business value of Microsoft Power Platform",
+   "Manage the Microsoft Power Platform environment",
+   "Demonstrate the capabilities of Power Apps",
+   "Demonstrate the capabilities of Power Automate",
+   "Describe features and capabilities of agents in Microsoft Copilot Studio"
+  ],
+  "guia_atualizado": "July 24, 2026",
+  "selo": "/assets/selos/microsoft-certified-fundamentals-badge.svg"
+ },
+ "DP-800": {
+  "slug": "developing-ai-enabled-database-solutions",
+  "nome": "Microsoft Certified: SQL AI Developer Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": true,
+  "pesos": [
+   "35–40%",
+   "35–40%",
+   "25–30%"
+  ],
+  "dominios_en": [
+   "Design and develop database solutions",
+   "Secure, optimize, and deploy database solutions",
+   "Implement AI capabilities in database solutions"
+  ],
+  "guia_atualizado": "March 12, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "SC-200": {
+  "slug": "security-operations-analyst",
+  "nome": "Microsoft Certified: Security Operations Analyst Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": true,
+  "pesos": [
+   "40–45%",
+   "35–40%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Manage a security operations environment",
+   "Respond to security incidents",
+   "Perform threat hunting"
+  ],
+  "guia_atualizado": "October 21, 2026",
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "SC-900": {
+  "slug": "security-compliance-and-identity-fundamentals",
+  "nome": "Microsoft Certified: Security, Compliance, and Identity Fundamentals",
+  "tipo": "Fundamentals",
+  "minutos": 45,
+  "ptbr": true,
+  "pesos": [
+   "10–15%",
+   "25–30%",
+   "35–40%",
+   "20–25%"
+  ],
+  "dominios_en": [
+   "Describe the concepts of security, compliance, and identity",
+   "Describe the capabilities of Microsoft Entra",
+   "Describe the capabilities of Microsoft security solutions",
+   "Describe the capabilities of Microsoft compliance solutions"
+  ],
+  "guia_atualizado": "October 21, 2026",
+  "selo": "/assets/selos/microsoft-certified-fundamentals-badge.svg"
+ },
+ "AB-330": {
+  "slug": "supply-chain-management-ai-consultant-associate",
+  "nome": "Microsoft Certified: Supply Chain Management AI Consultant Associate",
+  "tipo": "Role-based",
+  "minutos": 100,
+  "ptbr": false,
+  "pesos": [
+   "5–10%",
+   "1–5%",
+   "20–25%",
+   "20–25%",
+   "1–5%",
+   "30–35%"
+  ],
+  "dominios_en": [
+   "Implement the design to retire process",
+   "Implement the forecast to plan process",
+   "Implement the inventory to deliver process",
+   "Implement the order to cash process",
+   "Implement the plan to produce process",
+   "Implement the source to pay process"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ },
+ "AZ-802": {
+  "slug": "windows-server-hybrid-administrator",
+  "nome": "Microsoft Certified: Windows Server Administrator Associate",
+  "tipo": "Role-based",
+  "minutos": 120,
+  "ptbr": false,
+  "pesos": [
+   "20–25%",
+   "10–15%",
+   "10–15%",
+   "10–15%",
+   "15–20%",
+   "10–15%",
+   "15–20%"
+  ],
+  "dominios_en": [
+   "Deploy and manage AD DS",
+   "Manage Windows Server instances and workloads in a hybrid environment",
+   "Manage virtual machines",
+   "Implement and manage an on-premises and hybrid networking infrastructure",
+   "Manage storage and file services",
+   "Secure Windows Server infrastructure",
+   "Monitor and troubleshoot Windows Server environments"
+  ],
+  "guia_atualizado": null,
+  "selo": "/assets/selos/microsoft-certified-associate-badge.svg"
+ }
+}

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Raphael Barreto · Simulados para certificações Microsoft</title>
+  <meta name="description" content="Simulados em português para certificações Microsoft (SC-900, AZ-900, AI-901 e mais), com cupons de desconto na Udemy e o guia das 50 certificações Microsoft.">
+  <meta name="theme-color" content="#07080f">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Simulados Microsoft com cupom · Raphael Barreto">
+  <meta property="og:description" content="Questões no estilo real do exame, com explicação de cada alternativa, e o guia das 50 certificações Microsoft.">
+  <meta property="og:url" content="https://raphaelbarreto.com.br/">
+  <meta property="og:image" content="https://raphaelbarreto.com.br/assets/raphael-og.jpg">
+  <meta property="og:locale" content="pt_BR">
+  <link rel="canonical" href="https://raphaelbarreto.com.br/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/assets/raphael.webp">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/guia.css">
+  <link rel="stylesheet" href="/assets/efeitos.css">
+</head>
+<body>
+  <!-- Fundo animado + enxame de agentes -->
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+    <div class="grid"></div>
+    <canvas id="agentes"></canvas>
+    <div class="spot"></div>
+  </div>
+
+  <div class="demo-bar" id="demoBar" hidden>Modo demonstração · os cupons exibidos são exemplos</div>
+
+  <header class="topbar">
+    <a class="brand" href="#topo" aria-label="Início">
+      <span class="brand-mark">RB</span>
+      <span class="brand-name">Raphael Barreto</span>
+    </a>
+    <nav class="topnav" aria-label="Seções">
+      <a href="#microsoft">Simulados</a>
+      <a href="/certificacoes/" class="nav-hot">Certificações <span class="nav-badge">50</span></a>
+      <a href="#quiz">Qual fazer?</a>
+    </nav>
+    <a class="btn btn-sm btn-glow" href="#alerta">Receber cupons</a>
+  </header>
+
+  <main id="topo">
+    <!-- 1. HERO -->
+    <section class="hero">
+      <div class="avatar reveal" id="avatar"><span>RB</span></div>
+      <div class="chips reveal">
+        <span class="chip"><i class="dot ms"></i>Microsoft Certified Educator</span>
+        <span class="chip"><i class="dot aws"></i>AWS Academy Educator</span>
+        <span class="chip">21 anos de TI · +25 certificações</span>
+      </div>
+      <h1 class="kinetic" data-kinetic>Sua próxima certificação Microsoft começa <span class="grad">aqui.</span></h1>
+      <p class="lead reveal">Simulados Microsoft em português, no estilo real do exame e com explicação de cada alternativa. Escolha sua prova e treine com cupom de desconto na Udemy.</p>
+      <div class="cta-row reveal">
+        <a class="btn btn-primary magnetic" href="#microsoft">Escolher meu simulado <span aria-hidden="true">→</span></a>
+        <a class="btn btn-guide magnetic" href="/certificacoes/" id="ctaGuia"><span class="bg-shine" aria-hidden="true"></span>🗺️ Explorar as 50 certificações</a>
+      </div>
+      <a class="hero-quiz reveal" href="#quiz">Não sei por qual começar →</a>
+      <dl class="stats reveal">
+        <div><dt><span data-count="alunos">0</span>+</dt><dd>alunos</dd></div>
+        <div><dt>4,8<span class="star">★</span></dt><dd>no SC-900</dd></div>
+        <div><dt><span data-count="questoes">0</span>+</dt><dd>questões</dd></div>
+        <div><dt><span data-count="certificacoes">0</span></dt><dd>certificações no guia</dd></div>
+      </dl>
+    </section>
+
+    <!-- Faixas inclinadas de certificações -->
+    <div class="ribbons" aria-label="Certificações Microsoft">
+      <div class="ribbon ribbon-b" aria-hidden="true"><div class="ribbon-track" id="ribbonB"></div></div>
+      <div class="ribbon ribbon-a"><div class="ribbon-track" id="ribbonA"></div></div>
+    </div>
+
+    <!-- 2. OFERTA DA SEMANA -->
+    <section class="section" id="cupons">
+      <div class="offer reveal" id="offer"></div>
+    </section>
+
+    <!-- 3. GUIA DAS 50 CERTIFICAÇÕES (destaque + vitrine 3D) -->
+    <section class="section" id="guia50">
+      <div class="guide-feature reveal">
+        <div class="gf-copy">
+          <span class="eyebrow ms">Novo · Guia completo</span>
+          <h2><span class="gf-num" data-count="certificacoes">0</span> certificações Microsoft. <span class="grad">Um mapa só.</span></h2>
+          <p>Todas as certificações ativas em novembro de 2026, com o que cai em cada prova, os pesos oficiais, a duração, o idioma e por onde começar.</p>
+          <ul class="ticks">
+            <li>Azure, IA, dados, segurança, Microsoft 365, Power Platform e Dynamics 365</li>
+            <li>Rotas do Fundamentals ao Expert</li>
+            <li>Alertas de exames que vão se aposentar</li>
+          </ul>
+          <a class="btn btn-guide btn-lg magnetic" href="/certificacoes/"><span class="bg-shine" aria-hidden="true"></span>Abrir o guia das 50 certificações →</a>
+        </div>
+        <div class="gf-vitrine">
+          <p class="vit-hint">Escolha uma trilha e toque em uma certificação</p>
+          <div data-vitrine></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SIMULADOS MICROSOFT -->
+    <section class="section" id="microsoft">
+      <header class="section-head reveal">
+        <span class="eyebrow ms">Simulados na Udemy</span>
+        <h2>Linha 900 <span class="muted">Fundamentals</span></h2>
+        <p>As certificações de entrada da Microsoft. Não expiram e abrem caminho para os níveis Associate.</p>
+      </header>
+      <div class="cards" id="cards-microsoft"></div>
+    </section>
+
+    <!-- AWS (escondida enquanto mostrarAWS = false em dados.js) -->
+    <section class="section" id="aws" hidden>
+      <header class="section-head reveal">
+        <span class="eyebrow aws">Simulados AWS</span>
+        <h2>Amazon Web Services</h2>
+        <p>Do Cloud Practitioner ao Solutions Architect, passando por IA.</p>
+      </header>
+      <div class="cards" id="cards-aws"></div>
+    </section>
+
+    <!-- 5. QUIZ -->
+    <section class="section" id="quiz">
+      <div class="quiz glass reveal">
+        <div class="quiz-head">
+          <span class="eyebrow">Menos de 1 minuto</span>
+          <h2>Por qual certificação começar?</h2>
+          <p class="muted">3 perguntas para encontrar a sua entre as 50 certificações Microsoft.</p>
+          <div class="progress" aria-hidden="true"><i id="quizBar"></i></div>
+        </div>
+        <div id="quizBody" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- 6. DEPOIMENTOS (faixa dupla) -->
+    <section class="section section-wide" id="depoimentos">
+      <header class="section-head reveal">
+        <span class="eyebrow">Avaliações reais na Udemy</span>
+        <h2>Quem treinou, passou.</h2>
+      </header>
+      <div class="rv-marquee" id="reviews"></div>
+    </section>
+
+    <!-- 7. ALERTA DE CUPOM -->
+    <section class="section" id="alerta">
+      <div class="lead-box glass reveal">
+        <div class="lead-copy">
+          <span class="eyebrow">Alerta de cupom</span>
+          <h2>Cupons expiram rápido. <span class="grad">Receba primeiro.</span></h2>
+          <p>Entre na lista e receba os cupons novos e os lançamentos de PL-900, DP-900 e AB-900 antes de todo mundo.</p>
+          <ul class="ticks">
+            <li>Cupom exclusivo para quem está na lista</li>
+            <li>Aviso no dia do lançamento de cada simulado</li>
+            <li>Sem spam. Sai quando quiser.</li>
+          </ul>
+        </div>
+        <form class="lead-form" id="leadForm" data-lead novalidate>
+          <label>Seu nome
+            <input name="nome" autocomplete="given-name" required placeholder="Como posso te chamar?">
+          </label>
+          <label>WhatsApp ou e-mail
+            <input name="contato" required placeholder="(21) 99999-9999 ou voce@email.com">
+          </label>
+          <fieldset>
+            <legend>Quais provas te interessam?</legend>
+            <div class="pills" id="interesses"></div>
+          </fieldset>
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            <span>Aceito receber cupons e novidades de Raphael Barreto.</span>
+          </label>
+          <input type="text" name="site" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-primary btn-block" type="submit">Quero receber os cupons</button>
+          <p class="form-msg" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- 8. SOBRE -->
+    <section class="section" id="sobre">
+      <div class="about glass reveal">
+        <div class="about-avatar" id="avatar2"><span>RB</span></div>
+        <div>
+          <span class="eyebrow">Quem prepara os simulados</span>
+          <h2>Raphael Barreto</h2>
+          <p>Profissional de TI há 21 anos, instrutor no SENAI-RJ (FIRJAN), Microsoft Certified Educator e AWS Academy Educator. Graduado em Sistemas de Informação, pós-graduado em Educação a Distância (UFF) e com mais de 25 certificações internacionais.</p>
+          <p class="muted">Meu método: você não decora gabarito, entende por que cada alternativa está certa ou errada.</p>
+          <a class="btn btn-ghost" id="udemyProfile" target="_blank" rel="noopener">Ver meu perfil na Udemy ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="social" id="social"></div>
+    <p>© <span id="ano"></span> Raphael Barreto · Simulados independentes, não afiliados à Microsoft.</p>
+  </footer>
+
+  <!-- Barra fixa no celular -->
+  <div class="dock" id="dock">
+    <a class="btn btn-primary btn-block" href="#cupons">🎟️ Ver cupons ativos</a>
+  </div>
+
+  <!-- Cursor animado do topo -->
+  <div class="ghost-cursor" id="ghostCursor" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l16 9-7 2-3 7z" fill="#ff9a3c" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+    <span>Você</span>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/assets/dados.js"></script>
+  <script src="/assets/comum.js"></script>
+  <script src="/assets/efeitos.js"></script>
+  <script src="/assets/vitrine.js"></script>
+  <script src="/assets/app.js"></script>
+  <script src="/assets/quiz.js"></script>
+</body>
+</html>
