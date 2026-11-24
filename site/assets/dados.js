@@ -219,6 +219,6 @@ window.STORIES = [
    comentários ficam escondidos.
    ===================================================================== */
 window.SOCIAL = {
-  supabaseUrl: "",      // ex.: "https://abcdxyz.supabase.co"
-  chavePublica: ""      // ex.: "sb_publishable_..." ou a chave "anon"
+  supabaseUrl: "https://ynwheaphajmcibfajtuc.supabase.co",
+  chavePublica: "sb_publishable_G9vqDlUuZP0r9vvQldtrUA_X8_CPwUI"   // chave pública (pode ficar no site)
 };
