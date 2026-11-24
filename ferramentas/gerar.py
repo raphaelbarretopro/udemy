@@ -407,6 +407,93 @@ def preparo(c):
     }
     return dicas[n]
 
+def faq_cert(c):
+    """Perguntas frequentes geradas com os dados reais de cada exame.
+    Devolve [(pergunta, resposta_html, resposta_texto)] — o texto vai para o JSON-LD."""
+    cod, nome = c["codigo"], c["nome"]
+    nomes = lambda xs: ", ".join(f"{x} ({POR[x]['nomePt']})" for x in xs if x in POR)
+    links = lambda xs: ", ".join(f'<a href="/certificacoes/{x.lower()}/">{x}</a> ({e(POR[x]["nomePt"])})' for x in xs if x in POR)
+    itens = []
+    def add(p, html, txt): itens.append((p, html, txt))
+
+    # 1. Idioma
+    if c["ptbr"]:
+        t = f"Sim. A prova {cod} pode ser feita em português do Brasil, no centro de provas ou online, com supervisão remota."
+    elif c["ptbr"] is False:
+        t = f"Não. Hoje a prova {cod} é oferecida só em inglês (e em alguns outros idiomas, sem português). Quem não tem inglês fluente pode pedir tempo extra de 30 minutos ao agendar."
+    else:
+        t = f"Confirme na página oficial do exame {cod}, no Microsoft Learn, quais idiomas estão disponíveis no momento."
+    add(f"A prova {cod} tem em português?", e(t), t)
+
+    # 2. Duração e nota
+    if c["minutos"]:
+        t = f"A prova {cod} dura {c['minutos']} minutos e a nota mínima para passar é 700, numa escala de 1 a 1000."
+    else:
+        t = f"A nota mínima para passar na {cod} é 700, numa escala de 1 a 1000. A duração aparece na página oficial do exame no Microsoft Learn."
+    add(f"Quanto tempo dura a prova {cod} e qual a nota para passar?", e(t), t)
+
+    # 3. Pré-requisito
+    if c["prereq"]:
+        req = c["prereq"].rstrip(".")
+        t = f"Sim. Para receber a certificação {nome}, é preciso {req[0].lower() + req[1:]}."
+        h = e(t)
+    elif c["antes"]:
+        t = f"Não há pré-requisito obrigatório para a {cod}. Mesmo assim, ajuda ter feito antes {nomes(c['antes'])}."
+        h = f"Não há pré-requisito obrigatório para a {cod}. Mesmo assim, ajuda ter feito antes {links(c['antes'])}."
+    else:
+        t = f"Não. A {cod} não tem pré-requisito e é um ponto de partida: dá para fazer sem nenhuma certificação anterior."
+        h = e(t)
+    add(f"Precisa de pré-requisito para a {cod}?", h, t)
+
+    # 4. Validade
+    if c["nivel"] == "Fundamentals":
+        t = f"Não. As certificações Fundamentals, como a {cod}, não expiram."
+    elif c["nivel"] == "Business":
+        t = f"Confirme no Microsoft Learn as regras de validade da {nome}; as certificações de negócio seguem regras próprias."
+    else:
+        t = f"Sim, vale por um ano. A renovação é gratuita, feita online no Microsoft Learn nos seis meses antes do vencimento, sem precisar refazer a prova {cod}."
+    add(f"A certificação {cod} expira?", e(t), t)
+
+    # 5. O que mais cai
+    if c["dominios"]:
+        ord_ = sorted(c["dominios"], key=lambda d: -ponto_medio(d["peso"]))
+        topo = [d for d in ord_ if ponto_medio(d["peso"]) == ponto_medio(ord_[0]["peso"])]
+        if len(topo) == 1:
+            t = f"O assunto com mais peso na {cod} é “{topo[0]['nome']}”, com {topo[0]['peso']} das questões. Ao todo, a prova cobre {len(c['dominios'])} áreas."
+        else:
+            t = f"As áreas com mais peso na {cod} são " + " e ".join(f"“{d['nome']}” ({d['peso']})" for d in topo) + f". Ao todo, a prova cobre {len(c['dominios'])} áreas."
+        add(f"O que mais cai na prova {cod}?", e(t), t)
+
+    # 6. Próximo passo
+    if c["depois"]:
+        ini = "o caminho mais comum é" if len(c["depois"]) == 1 else "os caminhos mais comuns são"
+        t = f"Depois da {cod}, {ini} {nomes(c['depois'])}."
+        h = f"Depois da {cod}, {ini} {links(c['depois'])}."
+    else:
+        t = f"A {cod} está no topo desta trilha. O próximo passo costuma ser uma certificação de outra área que complemente o seu trabalho."
+        h = e(t)
+    add(f"Qual certificação fazer depois da {cod}?", h, t)
+
+    # 7. Simulado
+    if cod in COM_SIMULADO:
+        t = f"Sim. O simulado da {cod} na Udemy tem questões no estilo da prova real, com a explicação de cada alternativa em português, e costuma ter cupom de desconto nesta página."
+    else:
+        t = f"Ainda não há simulado da {cod} nesta página. Entre na lista no fim da página para receber o aviso e o cupom de estreia quando ele for lançado."
+    add(f"Tem simulado da {cod} em português?", e(t), t)
+
+    # 8. Aposentadoria / beta
+    if c["status"] == "aposentando" and c["aposenta"]:
+        t = f"Sim. A Microsoft vai aposentar a {cod} em {data_br(c['aposenta'])}. Quem já tem a certificação continua com ela até a data de validade."
+        h = e(t)
+        if c["depois"]:
+            t += f" Para quem ainda vai estudar, vale olhar {nomes(c['depois'])}."
+            h += f" Para quem ainda vai estudar, vale olhar {links(c['depois'])}."
+        add(f"A {cod} vai ser aposentada?", h, t)
+    elif c["status"] == "beta":
+        t = f"Sim. A {cod} está em beta: o conteúdo ainda pode mudar e o resultado sai algumas semanas depois da prova, não na hora."
+        add(f"A prova {cod} está em beta?", e(t), t)
+    return itens
+
 def pagina_cert(c):
     tn, ic = TRILHAS[c["trilha"]]
     dur = f'{c["minutos"]} minutos' if c["minutos"] else "Confirme na página do exame"
@@ -436,7 +523,7 @@ def pagina_cert(c):
     rel = [x for x in CERTS if x["trilha"] == c["trilha"] and x["codigo"] != c["codigo"]][:6]
     relacionadas = "".join(card_cert(x) for x in rel)
     toc = [("oque", "O que é"), ("resumo", "Resumo do exame"), ("publico", "Para quem é"), ("conteudo", "O que cai na prova"),
-           ("preparar", "Como se preparar"), ("rota", "Onde ela se encaixa"), ("links", "Links oficiais"), ("comentarios", "Comentários")]
+           ("preparar", "Como se preparar"), ("rota", "Onde ela se encaixa"), ("faq", "Perguntas frequentes"), ("links", "Links oficiais"), ("comentarios", "Comentários")]
     tocs = "".join(f'<a href="#{a}">{b}</a>' for a, b in toc)
     curto = c['nome'].replace('Microsoft Certified: ', '').replace('Microsoft 365 Certified: ', '')
     url = f"{DOMINIO}/certificacoes/{c['id']}/"
@@ -455,12 +542,16 @@ def pagina_cert(c):
            "dateModified": date.today().isoformat(), "author": {"@id": f"{DOMINIO}/#raphael"}, "publisher": {"@id": f"{DOMINIO}/#raphael"},
            "isPartOf": {"@id": f"{DOMINIO}/#site"}, "image": f"{DOMINIO}/assets/og/{c['id']}.jpg", "about": {"@id": url + "#credencial"},
            "mainEntityOfPage": url}
+    perguntas = faq_cert(c)
+    faq_ld = {"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
+        {"@type": "Question", "name": p, "acceptedAnswer": {"@type": "Answer", "text": txt}} for p, _, txt in perguntas]}
+    faq_html = "".join(f'<details class="faq-item"><summary>{e(p)}</summary><p>{h}</p></details>' for p, h, _ in perguntas)
     bc = {"@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Início", "item": DOMINIO + "/"},
         {"@type": "ListItem", "position": 2, "name": "Certificações", "item": DOMINIO + "/certificacoes/"},
         {"@type": "ListItem", "position": 3, "name": c["codigo"], "item": f"{DOMINIO}/certificacoes/{c['id']}/"}]}
     html = head(titulo, desc, f"/certificacoes/{c['id']}/",
-                ld_script(PESSOA, SITE_LD, art, cred, bc),
+                ld_script(PESSOA, SITE_LD, art, cred, bc, faq_ld),
                 imagem=f"/assets/og/{c['id']}.jpg")
     html += f"""
   <main id="topo" data-cert="{c['id']}" class="cert-page t-{c['trilha']}">
@@ -517,6 +608,10 @@ def pagina_cert(c):
             <div class="pcol gcol now"><small>Você está aqui</small><span class="pchip on" data-node="{c['codigo']}"><b>{c['codigo']}</b> {e(c['nomePt'])}</span></div>
             <div class="pcol gcol"><small>Próximo passo</small>{depois}</div>
           </div>
+        </section>
+        <section id="faq" class="block reveal">
+          <h2>Perguntas frequentes sobre a {c['codigo']}</h2>
+          <div class="faq">{faq_html}</div>
         </section>
         <section id="links" class="block reveal">
           <h2>Links oficiais</h2>
