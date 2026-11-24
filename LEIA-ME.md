@@ -78,3 +78,27 @@ node video/gravar.mjs
 ```
 (o segundo comando fica rodando em outra janela enquanto o terceiro grava).
 A chave do Azure fica em `.env.local` (fora do GitHub). Para trocar a chave: `video/gravar-chave.ps1`.
+
+## Stories na foto do site
+Ao tocar na sua foto (topo da página e seção "Sobre"), abre um story em tela cheia, como no Instagram,
+mas sem ligação com ele. O anel colorido pulsa enquanto houver story não visto e fica cinza depois que o
+visitante viu todos (fica guardado no navegador dele).
+
+**Publicar um story novo:**
+1. Coloque o arquivo em `site/stories/`: vídeo `.mp4` vertical (1080×1920) ou imagem `.jpg`/`.png`/`.webp`.
+   Para vídeos grandes, reduza o tamanho antes:
+   ```
+   ffmpeg -i original.mp4 -c:v libx264 -crf 27 -preset slow -pix_fmt yuv420p -c:a aac -b:a 112k -movflags +faststart site/stories/novo.mp4
+   ```
+2. Em `site/assets/dados.js`, na lista `window.STORIES`, adicione um item **no topo** (o mais novo primeiro):
+   ```js
+   { id: "dicas-sc900", tipo: "video", arquivo: "/stories/novo.mp4", capa: "/stories/novo-capa.jpg",
+     data: "2026-12-01T19:00", botao: { texto: "Simulado SC-900", simulado: "sc-900" } },
+   ```
+   - `tipo: "imagem"` aceita `segundos: 6` (tempo na tela).
+   - `ate: "2026-12-24"` faz o story sumir sozinho nessa data.
+   - `botao` pode abrir um simulado com o cupom ativo (`simulado: "ai-901"`) ou um endereço (`link: "/certificacoes/az-900/"`).
+3. Envie para o GitHub: o site é publicado sozinho.
+
+Gestos no story: tocar à direita avança, à esquerda volta, segurar pausa, arrastar para baixo fecha.
+No computador: setas, espaço (pausa) e Esc (fecha).

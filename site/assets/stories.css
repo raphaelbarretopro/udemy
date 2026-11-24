@@ -1,0 +1,81 @@
+/* =====================================================================
+   STORIES: anel na foto + visualizador em tela cheia
+   ===================================================================== */
+
+/* ---------- Foto com anel de story ---------- */
+.has-stories{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.has-stories::before{inset:-7px!important;
+  background:conic-gradient(from 210deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75)!important;
+  animation:storyGlow 2.2s ease-in-out infinite!important}
+.has-stories img{border:5px solid #07080f;box-sizing:border-box}
+.has-stories{animation:storyRipple 2.2s ease-out infinite}
+.has-stories:hover::before{animation-duration:1.1s!important}
+.has-stories:focus-visible{outline:3px solid #fa7e1e;outline-offset:10px}
+@keyframes storyGlow{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(214,41,118,0))}
+  50%{transform:scale(1.05);filter:drop-shadow(0 0 16px rgba(214,41,118,.75))}}
+@keyframes storyRipple{
+  0%{box-shadow:0 0 0 0 rgba(250,126,30,.55),0 0 0 0 rgba(214,41,118,.35)}
+  70%{box-shadow:0 0 0 16px rgba(250,126,30,0),0 0 0 30px rgba(214,41,118,0)}
+  100%{box-shadow:0 0 0 0 rgba(250,126,30,0),0 0 0 0 rgba(214,41,118,0)}}
+.has-stories.seen{animation:none}
+.has-stories.seen::before{background:#3a3f55!important;animation:none!important}
+.story-tag{position:absolute;left:50%;bottom:-12px;z-index:3;transform:translateX(-50%);padding:3px 10px;border-radius:7px;
+  font:800 11px/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(90deg,#d62976,#fa7e1e);border:3px solid #07080f;pointer-events:none}
+.has-stories.seen .story-tag{display:none}
+
+/* ---------- Visualizador ---------- */
+.sv-lock,.sv-lock body{overflow:hidden!important}
+.sv{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;gap:22px;
+  background:rgba(4,5,12,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.sv.open{display:flex;animation:svIn .28s var(--ease,ease)}
+@keyframes svIn{from{opacity:0}}
+.sv-frame{position:relative;height:min(94vh,calc(100vw * 16 / 9));aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#000;
+  box-shadow:0 40px 120px -20px rgba(0,0,0,.9);transition:transform .25s,opacity .25s;touch-action:none;animation:svZoom .32s var(--ease,ease)}
+@keyframes svZoom{from{transform:scale(.92)}}
+.sv-media,.sv-media video,.sv-media img{position:absolute;inset:0;width:100%;height:100%}
+.sv-media video,.sv-media img{object-fit:cover;display:block;background:#000}
+.sv-bars{position:absolute;top:10px;left:10px;right:10px;z-index:4;display:flex;gap:4px}
+.sv-bars i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.35);overflow:hidden}
+.sv-bars b{display:block;height:100%;width:0;background:#fff;border-radius:3px}
+.sv-head{position:absolute;top:0;left:0;right:0;z-index:4;display:flex;align-items:center;gap:9px;padding:22px 8px 30px 12px;color:#fff;
+  background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);pointer-events:none}
+.sv-head > *{pointer-events:auto}
+.sv-av{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:2px solid rgba(255,255,255,.85)}
+.sv-name{font:600 14px var(--body)}
+.sv-time{font:400 13px var(--body);opacity:.7}
+.sv-sp{flex:1}
+.sv-btn{display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:none;color:#fff;cursor:pointer}
+.sv-btn svg{width:22px;height:22px}
+.sv-btn:hover{background:rgba(255,255,255,.12)}
+.sv-tap{position:absolute;left:0;right:0;top:78px;bottom:84px;z-index:3;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.sv-cta{position:absolute;left:50%;bottom:24px;z-index:4;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;max-width:86%;
+  padding:11px 18px;border-radius:12px;background:#fff;color:#2563eb;font:700 15px var(--body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);animation:ctaBob 2.4s ease-in-out infinite}
+.sv-cta svg{width:18px;height:18px;flex:none}
+.sv-cta:hover{background:#f1f5ff}
+@keyframes ctaBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+.sv-spin{position:absolute;left:50%;top:50%;z-index:3;width:46px;height:46px;margin:-23px;border-radius:50%;border:4px solid rgba(255,255,255,.25);border-top-color:#fff;
+  opacity:0;transition:opacity .2s;animation:svSpin .8s linear infinite;pointer-events:none}
+.sv-spin.on{opacity:1}
+@keyframes svSpin{to{transform:rotate(360deg)}}
+.sv-side{display:grid;place-items:center;width:46px;height:46px;border:0;border-radius:50%;background:rgba(255,255,255,.88);color:#111;cursor:pointer;flex:none;transition:transform .2s}
+.sv-side:hover{transform:scale(1.08)}
+.sv-side svg{width:22px;height:22px}
+.sv-prev svg{transform:rotate(180deg)}
+.sv.paused .sv-bars,.sv.paused .sv-head,.sv.paused .sv-cta{opacity:.0;transition:opacity .2s}
+
+@media (max-width:640px){
+  .sv{background:#000;gap:0}
+  .sv-frame{width:100vw;height:100vh;height:100dvh;aspect-ratio:auto;border-radius:0;box-shadow:none}
+  .sv-side{display:none}
+  .sv-cta{bottom:calc(24px + env(safe-area-inset-bottom))}
+}
+@media (prefers-reduced-motion:reduce){
+  .has-stories,.has-stories::before,.sv-cta{animation:none!important}
+}
+.hero .has-stories{margin-bottom:12px}
+@media (max-width:640px) and (min-aspect-ratio:3/5){.sv-media video,.sv-media img{object-fit:contain}}
+.sv-name,.sv-time{white-space:nowrap}
+.sv-time{overflow:hidden;text-overflow:ellipsis;min-width:0}

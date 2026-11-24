@@ -176,3 +176,34 @@ window.NUMEROS_UDEMY = [
   { grande: "4,9★", texto: "nota do SC-900 BÔNUS", pequeno: "6 avaliações" },
   { grande: "809", texto: "pontos na prova oficial", pequeno: "aluno aprovado na SC-900" }
 ];
+
+/* =====================================================================
+   STORIES (abrem ao tocar na sua foto, no topo da página)
+   ---------------------------------------------------------------------
+   Para publicar um story novo:
+   1. Coloque o arquivo em site/stories/ (vídeo .mp4 vertical 1080x1920 ou imagem .jpg/.png/.webp).
+   2. Adicione um item NO TOPO da lista abaixo (o mais novo primeiro).
+   Campos:
+     id        nome único (use letras, números e hífen)
+     tipo      "video" ou "imagem"
+     arquivo   caminho do arquivo
+     capa      (opcional, vídeos) imagem mostrada enquanto o vídeo carrega
+     data      data e hora da publicação, ex.: "2026-11-23T20:00"
+     segundos  (opcional, imagens) quanto tempo a imagem fica na tela. Padrão: 6
+     ate       (opcional) data em que o story some sozinho, ex.: "2026-12-24"
+     botao     (opcional) botão de link na parte de baixo:
+                 { texto: "…", simulado: "ai-901" }  -> abre o simulado com o cupom ativo
+                 { texto: "…", link: "/certificacoes/az-900/" } -> abre um endereço
+   Os stories já vistos ficam marcados no navegador do visitante: quando ele viu todos,
+   o anel da foto fica cinza (como no Instagram). Um story novo faz o anel colorir de novo.
+   ===================================================================== */
+window.STORIES = [
+  {
+    id: "linha900-reels",
+    tipo: "video",
+    arquivo: "/stories/linha900.mp4",
+    capa: "/stories/linha900-capa.jpg",
+    data: "2026-11-23T23:15",
+    botao: { texto: "Simulado AI-901 grátis", simulado: "ai-901" }
+  }
+];
