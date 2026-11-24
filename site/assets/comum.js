@@ -214,6 +214,17 @@
     const upd = () => dock.classList.toggle("show", heroOut && !formIn);
     new IntersectionObserver(([en]) => { heroOut = !en.isIntersecting; upd(); }).observe(topo);
     const al = $("#alerta"); if (al) new IntersectionObserver(([en]) => { formIn = en.isIntersecting; upd(); }, { threshold: .1 }).observe(al);
+    /* iPhone (Safari): quando a barra do navegador encolhe, a área "fixa" pode passar da tela.
+       Mede a parte visível e sobe a barra o quanto for preciso. */
+    const vv = window.visualViewport;
+    if (vv) {
+      const ajusta = () => {
+        const sobra = Math.max(0, Math.round(window.innerHeight - (vv.height + vv.offsetTop)));
+        dock.style.setProperty("--dock-extra", sobra + "px");
+      };
+      vv.addEventListener("resize", ajusta); vv.addEventListener("scroll", ajusta); addEventListener("scroll", ajusta, { passive: true });
+      ajusta();
+    }
   }
 
   window.RB = { $, $$, esc, fmt, track, toast, byId, couponActive, courseUrl, couponChip, totalQ, daysLeft, deadline, simFor, simSoon, notifyFor, observeReveal, attachTilt, reduced, params };

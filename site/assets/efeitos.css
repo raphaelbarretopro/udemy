@@ -224,7 +224,6 @@
 .ccard-top .lvl{margin-left:0;justify-self:start;align-self:start;white-space:nowrap}
 
 /* ---------- Celular: nada pode passar da largura da tela ---------- */
-html{overflow-x:clip}
 .offer > *,.lead-box > *{min-width:0}
 .coupon > span:first-child{min-width:0;overflow-wrap:anywhere;text-align:left}
 .lead-form select{width:100%;min-width:0;max-width:100%;text-overflow:ellipsis}
@@ -237,3 +236,12 @@ html{overflow-x:clip}
 .vol > span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .vol:not(:has(.vol-seta)){justify-content:center}
 .vol-seta{flex:none;font-style:normal;opacity:.85}
+
+/* ---------- Etiqueta "Story" na foto: sem moldura preta, centralizada sobre o anel ---------- */
+.avatar .story-tag{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);z-index:3;
+  padding:4px 11px;border:0;border-radius:8px;color:#fff;-webkit-text-fill-color:#fff;
+  background:linear-gradient(90deg,#d62976,#fa7e1e);-webkit-background-clip:border-box;background-clip:border-box;
+  box-shadow:0 6px 16px -6px rgba(214,41,118,.8)}
+
+/* ---------- Barra "Ver cupons ativos": sempre dentro da tela (iPhone) ---------- */
+.dock{bottom:calc(14px + env(safe-area-inset-bottom) + var(--dock-extra,0px))}
