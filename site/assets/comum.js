@@ -128,8 +128,24 @@
     });
     const btn = $("button[type=submit]", f), label = btn.textContent;
     btn.disabled = true; btn.textContent = "Enviando…";
+    const SB = window.SOCIAL || {};
     try {
-      if (S.formEndpoint) await fetch(S.formEndpoint, { method: "POST", mode: "no-cors", body: data });
+      if (SB.supabaseUrl && SB.chavePublica) {
+        /* Grava no Supabase (tabela "inscritos", via função "inscrever") */
+        let disp = localStorage.getItem("rb_disp");
+        if (!/^[0-9a-f-]{36}$/i.test(disp || "") && crypto.randomUUID) { disp = crypto.randomUUID(); localStorage.setItem("rb_disp", disp); }
+        const r = await fetch(`${SB.supabaseUrl.replace(/\/$/, "")}/rest/v1/rpc/inscrever`, {
+          method: "POST",
+          headers: { apikey: SB.chavePublica, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            p_nome: nome, p_contato: contato, p_tipo: email ? "email" : "whatsapp", p_interesses: interesses,
+            p_origem: data.get("origem"), p_campanha: data.get("campanha"), p_pagina: data.get("pagina"),
+            p_dispositivo: /^[0-9a-f-]{36}$/i.test(disp || "") ? disp : null
+          })
+        });
+        if (!r.ok) throw new Error(await r.text());
+      }
+      else if (S.formEndpoint) await fetch(S.formEndpoint, { method: "POST", mode: "no-cors", body: data });
       else if (!S.modoDemo) throw new Error("sem endpoint");
       msg.className = "form-msg ok";
       msg.textContent = `Pronto, ${nome.split(" ")[0]}! Você vai receber os próximos cupons antes de todo mundo.`;

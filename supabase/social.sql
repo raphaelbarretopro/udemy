@@ -191,3 +191,83 @@ select c.cert as certificacao,
 from c
 order by salvos desc, curtidas desc;
 revoke all on public.resumo from anon, authenticated;
+
+-- =====================================================================
+-- ALERTA DE CUPONS: quem se inscreveu no formulário "Quero receber os cupons"
+-- Veja em Table Editor > inscritos  (exporte em CSV pelo botão Export).
+-- Por prova:  select * from inscritos_por_prova;
+-- Lista de uma prova:  select nome, contato, tipo from inscritos
+--                      where 'SC-900' = any(interesses) and not descadastrado;
+-- =====================================================================
+create table if not exists public.inscritos (
+  id            bigint generated always as identity primary key,
+  nome          text not null,
+  contato       text not null,              -- como a pessoa digitou
+  chave         text not null unique,       -- e-mail em minúsculas ou só os dígitos do WhatsApp
+  tipo          text not null check (tipo in ('email','whatsapp')),
+  interesses    text[] not null default '{}',
+  origem        text,
+  campanha      text,
+  pagina        text,
+  dispositivo   uuid,
+  aceite        timestamptz not null default now(),  -- quando aceitou receber (LGPD)
+  descadastrado boolean not null default false,       -- marque true se a pessoa pedir para sair
+  criado        timestamptz not null default now(),
+  atualizado    timestamptz not null default now()
+);
+create index if not exists inscritos_disp_idx on public.inscritos (dispositivo, atualizado);
+alter table public.inscritos enable row level security;
+revoke all on public.inscritos from anon, authenticated;
+
+-- Inscrever (ou atualizar quem já está na lista, somando as provas de interesse)
+create or replace function public.inscrever(
+  p_nome text, p_contato text, p_tipo text, p_interesses text,
+  p_origem text default null, p_campanha text default null, p_pagina text default null,
+  p_dispositivo uuid default null)
+returns void
+language plpgsql security definer set search_path = public as $$
+declare
+  v_chave text;
+  v_int   text[];
+begin
+  p_nome := btrim(coalesce(p_nome, '')); p_contato := btrim(coalesce(p_contato, ''));
+  if char_length(p_nome) not between 2 and 80 then raise exception 'nome invalido'; end if;
+  if p_tipo = 'email' then
+    v_chave := lower(p_contato);
+    if v_chave !~ '^[^\s@]+@[^\s@]+\.[^\s@]+$' or char_length(v_chave) > 120 then raise exception 'contato invalido'; end if;
+  elsif p_tipo = 'whatsapp' then
+    v_chave := regexp_replace(p_contato, '\D', '', 'g');
+    if char_length(v_chave) not between 10 and 15 then raise exception 'contato invalido'; end if;
+  else
+    raise exception 'tipo invalido';
+  end if;
+  if p_dispositivo is not null and (select count(*) from inscritos
+      where dispositivo = p_dispositivo and atualizado > now() - interval '1 hour') >= 10 then
+    raise exception 'limite de inscricoes';
+  end if;
+  v_int := array(select distinct upper(btrim(x)) from unnest(string_to_array(coalesce(p_interesses, ''), ',')) x
+                 where btrim(x) ~* '^[a-z]{2}-[0-9]{3}$|^outra' limit 60);
+  insert into inscritos (nome, contato, chave, tipo, interesses, origem, campanha, pagina, dispositivo)
+  values (left(p_nome, 80), left(p_contato, 120), v_chave, p_tipo, v_int,
+          left(p_origem, 300), left(p_campanha, 120), left(p_pagina, 300), p_dispositivo)
+  on conflict (chave) do update set
+    nome          = excluded.nome,
+    interesses    = array(select distinct x from unnest(inscritos.interesses || excluded.interesses) x order by 1),
+    dispositivo   = excluded.dispositivo,
+    aceite        = now(),
+    descadastrado = false,
+    atualizado    = now();
+end $$;
+revoke execute on function public.inscrever(text, text, text, text, text, text, text, uuid) from public;
+grant execute on function public.inscrever(text, text, text, text, text, text, text, uuid) to anon, authenticated;
+
+-- Quantos inscritos querem cada prova (só para você)
+create or replace view public.inscritos_por_prova as
+select prova, count(*) as inscritos,
+       count(*) filter (where tipo = 'email')    as por_email,
+       count(*) filter (where tipo = 'whatsapp') as por_whatsapp
+from inscritos, unnest(case when interesses = '{}' then array['(nenhuma)'] else interesses end) as prova
+where not descadastrado
+group by prova
+order by inscritos desc;
+revoke all on public.inscritos_por_prova from anon, authenticated;

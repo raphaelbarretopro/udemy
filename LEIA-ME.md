@@ -18,9 +18,9 @@ Todos mantêm os `utm_` para a medição. O guia também aceita filtro pela URL:
    - coloque `modoDemo: false`;
    - preencha `codigo`, `validade` (AAAA-MM-DD) e `preco` dos cupons de cada simulado;
    - preencha `instagram`, `linkedin` e, se quiser, `foto` (ex.: `assets/raphael.jpg`, quadrada).
-2. Instale o formulário na planilha: siga as instruções no topo de `apps-script/Codigo.gs`
-   e cole a URL `/exec` em `formEndpoint`. Todos os formulários do site gravam na mesma planilha;
-   a coluna `interesses` diz qual certificação a pessoa quer.
+2. O formulário "Quero receber os cupons" grava no Supabase (tabela `inscritos`), usando a mesma
+   configuração de `SOCIAL` em `dados.js`. Veja "Alerta de cupons" abaixo. A planilha do
+   `apps-script/Codigo.gs` (`formEndpoint`) só é usada se o Supabase não estiver configurado.
 3. (Opcional) Preencha `ga4` e/ou `metaPixel` para medir cliques e cadastros.
 
 ## Ajustes rápidos em `site/assets/dados.js`
@@ -37,7 +37,7 @@ Todos mantêm os `utm_` para a medição. O guia também aceita filtro pela URL:
 - **Lançou um simulado novo:** em `dados.js`, troque `status: "em-breve"` por `"disponivel"` (ou crie um
   item novo com `id` igual ao código em minúsculas, ex.: `"az-104"`), preencha `cupom` e `cursos`.
   A página `/certificacoes/az-104/` passa a mostrar o simulado sozinha e o selo aparece no catálogo.
-  Antes de lançar, filtre a planilha por aquele código e avise quem pediu.
+  Antes de lançar, veja no Supabase quem pediu aquele código ("Alerta de cupons" abaixo) e avise.
 
 ## Atualizar as certificações (quando a Microsoft mudar algo)
 Os textos ficam em `ferramentas/conteudo_pt.py` e os dados oficiais (pesos, duração, idioma) em
@@ -126,6 +126,17 @@ Os comentários chegam como pendentes. No Supabase, abra **Table Editor → come
 
 ### Ver os números
 No Supabase, abra **SQL Editor** e rode `select * from resumo;`. Aparece, por certificação: curtidas, **salvos em Minhas metas**, comentários aprovados e pendentes, e compartilhamentos (LinkedIn, WhatsApp e outros). A lista vem ordenada pelas mais salvas, um bom termômetro para escolher o próximo simulado. Esse resumo só você vê; o site não tem acesso a ele.
+
+### Alerta de cupons (inscritos)
+Quem preenche "Quero receber os cupons" vai para **Table Editor → inscritos**: nome, contato, tipo
+(`email` ou `whatsapp`), provas de interesse, origem e data do aceite. O mesmo e-mail ou WhatsApp não
+duplica: as provas novas são somadas ao cadastro. O site só consegue inscrever; ninguém lê a lista por ele.
+
+    select * from inscritos_por_prova;                      -- quantos querem cada prova
+    select nome, contato, tipo from inscritos
+    where 'SC-900' = any(interesses) and not descadastrado; -- lista para avisar sobre a SC-900
+
+Para exportar, use **Export → CSV** no resultado. Se alguém pedir para sair, marque `descadastrado = true`.
 
 ### Manter o projeto ativo
 O plano gratuito pausa o projeto depois de 7 dias sem uso. A tarefa `.github/workflows/supabase-ativo.yml` consulta o banco duas vezes por semana para evitar isso.

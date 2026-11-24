@@ -23,8 +23,8 @@ window.SITE = {
   /* false = esconde tudo da AWS (seção, quiz, faixa, depoimentos). true = mostra de novo. */
   mostrarAWS: false,
 
-  /* URL do Google Apps Script que grava os contatos na planilha
-     (veja apps-script/Codigo.gs e o LEIA-ME). */
+  /* Os contatos vão para o Supabase (tabela "inscritos", configuração SOCIAL no fim
+     deste arquivo). Esta URL do Google Apps Script só é usada se o Supabase estiver vazio. */
   formEndpoint: "",
 
   /* Opcional: medição */
