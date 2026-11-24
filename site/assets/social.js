@@ -147,12 +147,31 @@
     fig.title = "Toque duas vezes para curtir";
   }
 
+  /* Atalho "🔖 Minhas metas (n)" no topo do site: só aparece para quem salvou alguma */
+  function pintarAtalhoMetas() {
+    const bar = $(".topbar"); if (!bar) return;
+    let a = $(".meta-atalho", bar);
+    if (!a) {
+      const cta = $(".topbar > .btn", bar);
+      const grupo = document.createElement("div"); grupo.className = "topbar-acoes";
+      a = document.createElement("a"); a.className = "meta-atalho"; a.href = "/certificacoes/?metas=1#catalogo";
+      grupo.append(a); if (cta) { cta.replaceWith(grupo); grupo.append(cta); } else bar.append(grupo);
+    }
+    const n = metas.size;
+    a.hidden = !n;
+    a.innerHTML = `${I.save}<span class="ma-txt">Minhas metas</span><b>${n}</b>`;
+    a.setAttribute("aria-label", `Minhas metas: ${n} certificaç${n === 1 ? "ão salva" : "ões salvas"}`);
+    a.title = "Ver as certificações que você salvou";
+  }
+
   function alternarMeta(x) {
     const add = !metas.has(x.id);
     add ? metas.add(x.id) : metas.delete(x.id); gravar("rb_metas", [...metas]); pintar(); pintarCards();
     if (add) estourar(".ig-save", x.id);
     if (ON) rpc("salvar", { p_cert: x.id, p_dispositivo: DISP, p_salvar: add }).catch(() => {});
-    toast(add ? `🔖 ${x.code} salva em Minhas metas. Ative o filtro “Minhas metas” no catálogo para ver todas.` : `${x.code} removida de Minhas metas.`);
+    pintarAtalhoMetas();
+    toast(add ? `🔖 ${x.code} salva em Minhas metas.` : `${x.code} removida de Minhas metas.`,
+          add ? { texto: "Ver minhas metas →", href: "/certificacoes/?metas=1#catalogo" } : null);
     track(add ? "salvar_meta" : "remover_meta", { exame: x.code });
   }
 
@@ -344,6 +363,7 @@
     pintar();
   }
   iniciarBarras();
+  pintarAtalhoMetas();
   curtirNoSelo();
   if (secao && ID && ON) montarComentarios();
   pintarCards();

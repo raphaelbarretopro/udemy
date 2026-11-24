@@ -68,10 +68,13 @@
   const simSoon = (id) => { const s = byId[String(id).toLowerCase()]; return s && s.status === "em-breve" ? s : null; };
 
   /* ---------- Toast e cópia ---------- */
-  const toast = (msg) => {
+  /* acao (opcional): { texto, href } vira um botão clicável dentro do aviso */
+  const toast = (msg, acao) => {
     const t = $("#toast"); if (!t) return;
-    t.textContent = msg; t.classList.add("show");
-    clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 2600);
+    t.textContent = msg;
+    if (acao) { const a = document.createElement("a"); a.className = "toast-acao"; a.href = acao.href; a.textContent = acao.texto; t.append(a); }
+    t.classList.toggle("tem-acao", !!acao); t.classList.add("show");
+    clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), acao ? 5500 : 2600);
   };
   async function copy(text) {
     try { await navigator.clipboard.writeText(text); return true; }

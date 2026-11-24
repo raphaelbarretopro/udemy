@@ -16,7 +16,7 @@
 .ig-sp{flex:1}
 .ig-like.on svg{color:#ff3040}
 .ig-like.on svg{fill:#ff3040}
-.ig-save.on svg{fill:currentColor}
+.ig-save.on svg{fill:#fbbf24;color:#fbbf24}
 .ig-b.pop svg{animation:igPop .45s var(--ease)}
 @keyframes igPop{0%{transform:scale(1)}30%{transform:scale(1.35)}55%{transform:scale(.9)}100%{transform:scale(1)}}
 .ig-b[data-dica]::after{content:attr(data-dica);position:absolute;left:50%;bottom:calc(100% + 8px);transform:translate(-50%,4px);white-space:nowrap;
@@ -116,3 +116,18 @@
 .ccard-box > .ig-card{position:absolute;left:10px;right:10px;bottom:10px;margin:0;z-index:2}
 .ccard-box .ig-card .ig-b{height:34px;padding:0 6px}
 .ccard-box .ig-card .ig-b svg{width:20px;height:20px}
+
+/* ---------- Aviso com botão (ex.: "Ver minhas metas →") ---------- */
+.toast.tem-acao{pointer-events:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;border-color:rgba(251,191,36,.45)}
+.toast-acao{padding:7px 12px;border-radius:10px;background:#fbbf24;color:#1a1300;font-weight:700;font-size:13.5px;white-space:nowrap}
+.toast-acao:hover{background:#fcd34d}
+
+/* ---------- Atalho "Minhas metas" no topo ---------- */
+.topbar-acoes{display:flex;align-items:center;gap:8px}
+.meta-atalho{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 12px;border-radius:999px;
+  border:1px solid rgba(251,191,36,.4);background:rgba(251,191,36,.1);color:#fde68a;font-size:13.5px;font-weight:600;white-space:nowrap;transition:.25s var(--ease)}
+.meta-atalho[hidden]{display:none}
+.meta-atalho svg{width:17px;height:17px;fill:#fbbf24;color:#fbbf24}
+.meta-atalho b{min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#fbbf24;color:#1a1300;font-size:12px;display:grid;place-items:center}
+.meta-atalho:hover{background:rgba(251,191,36,.2);border-color:#fbbf24}
+@media (max-width:640px){ .meta-atalho{padding:0 10px} .meta-atalho .ma-txt{display:none} }
