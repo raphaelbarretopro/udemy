@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+  /* Capa de destaque do Instagram (1080 x 1920), no estilo das capas AI-901 e SC-900:
+     fundo escuro com raios de luz na cor do tema e o texto branco, grosso e inclinado, no centro.
+     Uso: destaque.html?t=LINHA|900&c1=%232f8cff&c2=%23ff9a3c  (| quebra a linha) */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#020304}
+  #capa{position:relative;width:1080px;height:1920px;overflow:hidden;
+    background:radial-gradient(900px 900px at 70% 60%,color-mix(in srgb,var(--c1) 16%,transparent),transparent 70%),#020304}
+  .raio{position:absolute;left:50%;top:50%;height:6px;border-radius:6px;transform-origin:center;
+    background:linear-gradient(90deg,transparent,var(--cor) 35%,#fff 50%,var(--cor) 65%,transparent);
+    box-shadow:0 0 18px 4px var(--cor),0 0 60px 14px color-mix(in srgb,var(--cor) 55%,transparent);opacity:.9}
+  .nevoa{position:absolute;inset:0;filter:blur(60px);opacity:.85}
+  .nevoa i{position:absolute;border-radius:50%}
+  .texto{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
+  .texto span{display:block;font:400 290px/0.9 "Lilita One",sans-serif;color:#fff;letter-spacing:-.01em;
+    transform:rotate(-5deg) skewX(-7deg);text-shadow:0 10px 40px rgba(0,0,0,.7)}
+  .texto span.pequeno{font-size:170px}
+  .texto span.unico{font-size:190px}
+  svg.relampago{position:absolute;inset:0;width:100%;height:100%}
+</style>
+</head>
+<body>
+<div id="capa">
+  <div class="nevoa">
+    <i style="width:900px;height:520px;right:-260px;top:1000px;background:var(--c1);transform:rotate(-38deg)"></i>
+    <i style="width:560px;height:360px;left:-200px;top:380px;background:var(--c2);opacity:.55;transform:rotate(-38deg)"></i>
+  </div>
+  <div id="raios"></div>
+  <div class="texto" id="texto"></div>
+</div>
+<script>
+  const p = new URLSearchParams(location.search);
+  const c1 = p.get("c1") || "#2f8cff", c2 = p.get("c2") || "#ff9a3c";
+  const capa = document.getElementById("capa");
+  capa.style.setProperty("--c1", c1); capa.style.setProperty("--c2", c2);
+  // raios diagonais, como nas capas existentes (sobem da direita para cima)
+  const raios = [
+    [ 260, -340, 1700, -38, c1, 7], [ 330, -220, 1500, -36, c1, 5], [ 420,  120, 1300, -40, c1, 9],
+    [ 140, -620, 1100, -42, c1, 3], [ -60,  520, 1200, -37, c1, 4], [-380, -520,  900, -39, c2, 4],
+    [-300, -760,  700, -41, c2, 3], [ 520,  420,  900, -35, c1, 6]
+  ];
+  // relâmpagos irregulares (como nas capas existentes), com brilho
+  function relampago(x0, y0, x1, y1, passos, desvio, semente) {
+    let r = semente; const rnd = () => ((r = (r * 9301 + 49297) % 233280) / 233280) - .5;
+    const pts = []; for (let i = 0; i <= passos; i++) { const t = i / passos; pts.push([x0 + (x1 - x0) * t + rnd() * desvio, y0 + (y1 - y0) * t + rnd() * desvio]); }
+    return pts.map(p => p.map(Math.round).join(",")).join(" ");
+  }
+  const bolts = [[1180, 700, 120, 1720, 34, 46, 7, c1, 5], [1180, 980, 380, 1900, 26, 38, 21, c1, 3.5], [900, 0, 560, 420, 12, 30, 33, c1, 2.5]];
+  document.getElementById("raios").insertAdjacentHTML("afterend", `<svg class="relampago" viewBox="0 0 1080 1920"><defs><filter id="g" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>${
+    bolts.map(([a, b, c, d, n, dv, sd, cor, w]) => `<polyline points="${relampago(a, b, c, d, n, dv, sd)}" fill="none" stroke="${cor}" stroke-width="${w}" stroke-linejoin="round" filter="url(#g)"/><polyline points="${relampago(a, b, c, d, n, dv, sd)}" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="${w / 3}"/>`).join("")}</svg>`);
+  document.getElementById("raios").innerHTML = raios.map(([x, y, w, a, cor, h]) =>
+    `<div class="raio" style="--cor:${cor};width:${w}px;height:${h}px;margin-left:${x - w / 2}px;margin-top:${y}px;transform:rotate(${a}deg)"></div>`).join("");
+  const linhas = (p.get("t") || "LINHA|900").split("|");
+  document.getElementById("texto").innerHTML = linhas.map((l, i) => `<span class="${linhas.length === 1 ? "unico" : i === 0 ? "pequeno" : ""}">${l}</span>`).join("");
+  document.fonts.ready.then(() => document.body.dataset.pronto = "1");
+</script>
+</body>
+</html>
